@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowDown, ArrowUpRight, Instagram, Twitter, Github, Check, CheckCheck, Bot, Zap, MessageCircle, Workflow } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Check, CheckCheck, Bot, MessageCircle } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: Index,
