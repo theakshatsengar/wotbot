@@ -48,7 +48,7 @@ function Nav() {
         </a>
         <button
           type="button"
-          className="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border-2 border-black bg-white"
+          className="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border-2 border-black bg-black text-white"
           aria-label={isOpen ? "Close navigation" : "Open navigation"}
           aria-expanded={isOpen}
           onClick={() => setIsOpen((prev) => !prev)}
