@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowDown, ArrowUpRight, Instagram, Twitter, Github, Linkedin } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Instagram, Twitter, Github } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -179,6 +179,3 @@ function Footer() {
   );
 }
 
-// Suppress unused import lint
-void Linkedin;
-}
