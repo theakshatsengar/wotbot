@@ -160,9 +160,9 @@ function ChatDemo() {
             SOUNDS LIKE YOU.<br/>SELLS LIKE YOU.
           </h2>
           <p className="text-white/80 mt-6 text-base leading-relaxed">
-            We train your bot on your products, prices, FAQs, and tone of voice.
-            Every customer gets a reply that feels personal — because it knows
-            their order, their history, and what they asked you last Tuesday.
+            We train your bot on your products, pricing, FAQs, and your tone, so it actually sounds like you.
+            It remembers who your customers are, what they ordered, what they asked last tuesday, and all of it.
+            So every reply feels personal, not robotic. Just quick, helpful responses that actually get your customers.
           </p>
           <p className="font-mono-tech text-[#25D366] mt-4 text-xs uppercase">
             → No "press 1 for support" robot energy. Promise.
@@ -212,7 +212,7 @@ function PainStats() {
       <div className="max-w-6xl mx-auto">
         <div className="font-mono-tech uppercase text-xs mb-4">[ The Problem / 01 ]</div>
         <h2 className="font-display max-w-4xl" style={{ fontSize: "6vw", lineHeight: 0.95 }}>
-          EVERY UNREAD DM IS A REFUND YOU NEVER GAVE — TO A COMPETITOR.
+          EVERY MISSED DM IS REVENUE YOU HAND TO A COMPETITOR.
         </h2>
         <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed">
           You're getting flooded with WhatsApp enquiries. Pricing questions at 11pm.
@@ -234,10 +234,10 @@ function PainStats() {
 }
 
 const services = [
-  { n: "01", title: "Zero Missed Leads", tags: ["24/7 Replies", "Auto-Capture", "CRM Sync"] },
-  { n: "02", title: "Trained On You", tags: ["Your Tone", "Your Catalog", "Your FAQs"] },
-  { n: "03", title: "Closes The Sale", tags: ["Checkout Links", "Booking", "Upsells"] },
-  { n: "04", title: "Hands It Off", tags: ["Live Handoff", "Smart Alerts", "Inbox"] },
+  { n: "01", title: "ZERO MISSED LEADS", tags: ["24/7 Replies", "Auto-Capture", "CRM Sync"] },
+  { n: "02", title: "LEARNS YOUR BUSINESS", tags: ["Your Tone", "Your Catalog", "Your FAQs"] },
+  { n: "03", title: "TURNS CHATS INTO SALES", tags: ["Checkout Links", "Booking", "Upsells"] },
+  { n: "04", title: "HANDS OFF TO YOUR TEAM", tags: ["Live Handoff", "Smart Alerts", "Inbox"] },
 ];
 
 function Services() {
@@ -377,7 +377,7 @@ function CTA() {
     <section id="cta" className="bg-[#25D366] py-32 px-6 text-center border-t-2 border-black">
       <div className="font-mono-tech uppercase text-xs mb-6 opacity-70">[ Last Call / 07 ]</div>
       <h2 className="font-display" style={{ fontSize: "13vw", lineHeight: 0.9 }}>
-        STOP LOSING<br/>LEADS.
+        GET YOUR NEXT<br/>LEAD FREE.
       </h2>
       <p className="max-w-xl mx-auto mt-8 text-base sm:text-lg">
         Plug in your WhatsApp number. Train the bot on your business in 5 minutes.
