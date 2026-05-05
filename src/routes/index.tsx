@@ -109,7 +109,7 @@ function ScrollIndicator() {
 
 function Hero() {
   return (
-    <header className="min-h-screen flex flex-col justify-end pt-20 sm:pt-24 md:pt-32">
+    <header className="min-h-screen flex flex-col justify-end pt-10 sm:pt-20 md:pt-32">
       <div className="px-6 max-w-5xl mx-auto text-center mb-8">
         <div className="inline-flex items-center gap-2 border-2 border-black px-4 py-1.5 font-mono-tech uppercase text-[11px] bg-white">
           <span className="w-2 h-2 rounded-full bg-black animate-pulse" />
