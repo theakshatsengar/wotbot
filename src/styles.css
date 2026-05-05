@@ -150,7 +150,7 @@
 
   ::selection {
     background: #000000;
-    color: #FF4D00;
+    color: var(--brand-green);
   }
 
   .font-display {
