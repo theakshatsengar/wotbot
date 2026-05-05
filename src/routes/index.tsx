@@ -344,7 +344,7 @@ function Pricing() {
         <div className="flex items-end justify-between border-b-2 border-black pb-6 mb-12">
           <div>
             <div className="font-mono-tech uppercase text-xs mb-2">[ Pricing / 05 ]</div>
-            <h2 className="font-display" style={{ fontSize: "8vw", lineHeight: 0.9 }}>ONE CLOSED DEAL<br/>PAYS FOR THE YEAR.</h2>
+            <h2 className="font-display" style={{ fontSize: "8vw", lineHeight: 0.9 }}>ONE CLOSED DEAL<br/>PAYS FOR YEAR.</h2>
           </div>
         </div>
         <div className="grid md:grid-cols-3 gap-0 border-2 border-black">
