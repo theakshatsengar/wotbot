@@ -85,7 +85,7 @@ function Hero() {
         Your AI sales rep on WhatsApp. Replies in 3 seconds, sounds like you,<br className="hidden md:block"/>
         qualifies the lead, books the call, closes the sale — 24/7.
       </p>
-      <div className="border-t-2 border-black mt-12">
+      <div className="border-t-2 border-black mt-12 pt-36 sm:pt-0">
         <div className="grid grid-cols-3 items-center px-6 py-6 gap-6">
           <div className="font-mono-tech uppercase text-xs sm:text-sm">
             <div className="opacity-60">Avg. Reply</div>
@@ -108,7 +108,7 @@ function SkewedMarquee() {
   const text1 = "ANSWER EVERY LEAD — CLOSE WHILE YOU SLEEP — ";
   const text2 = "ZERO MISSED DMS • 3-SECOND REPLIES • 24/7 SALES • ";
   return (
-    <section className="bg-black -skew-y-2 my-20 py-12 overflow-hidden border-y-2 border-black">
+    <section className="bg-black -skew-y-2 my-20 pt-0 pb-12 sm:pt-12 overflow-hidden border-y-2 border-black">
       <div className="skew-y-2">
         <div className="overflow-hidden whitespace-nowrap py-2">
           <div className="inline-flex animate-marquee">
