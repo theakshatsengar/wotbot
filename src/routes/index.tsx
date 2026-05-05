@@ -100,8 +100,8 @@ function ScrollIndicator() {
           </textPath>
         </text>
       </svg>
-      <div className="w-12 h-12 rounded-full bg-black flex items-center justify-center">
-        <ArrowDown className="text-[#25D366]" size={20} />
+      <div className="w-12 h-12 rounded-full bg-black grid place-items-center">
+        <ArrowDown className="text-[#25D366] block" size={20} />
       </div>
     </div>
   );
