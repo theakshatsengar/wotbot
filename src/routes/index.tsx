@@ -108,7 +108,7 @@ function SkewedMarquee() {
   const text1 = "ANSWER EVERY LEAD — CLOSE WHILE YOU SLEEP — ";
   const text2 = "ZERO MISSED DMS • 3-SECOND REPLIES • 24/7 SALES • ";
   return (
-    <section className="bg-black -skew-y-2 my-2 sm:my-20 py-12 overflow-hidden border-y-2 border-black">
+    <section className="bg-black -skew-y-2 my-20 pt-0 pb-12 sm:pt-12 overflow-hidden border-y-2 border-black">
       <div className="skew-y-2">
         <div className="overflow-hidden whitespace-nowrap py-2">
           <div className="inline-flex animate-marquee">
