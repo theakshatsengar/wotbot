@@ -51,8 +51,12 @@ function Nav() {
 
 function ScrollIndicator() {
   return (
-    <div className="relative w-36 h-36 flex items-center justify-center">
-      <svg viewBox="0 0 144 144" className="absolute inset-0 animate-spin-slow">
+    <div className="relative w-36 h-36">
+      <svg
+        viewBox="0 0 144 144"
+        preserveAspectRatio="xMidYMid meet"
+        className="absolute inset-0 w-full h-full animate-spin-slow"
+      >
         <defs>
           <path id="circlePath" d="M 72,72 m -56,0 a 56,56 0 1,1 112,0 a 56,56 0 1,1 -112,0" />
         </defs>
@@ -62,8 +66,10 @@ function ScrollIndicator() {
           </textPath>
         </text>
       </svg>
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black grid place-items-center">
-        <ArrowDown className="text-[#25D366] block" size={20} />
+      <div className="absolute inset-0 grid place-items-center">
+        <div className="w-12 h-12 rounded-full bg-black grid place-items-center">
+          <ArrowDown className="text-[#25D366] block" size={20} />
+        </div>
       </div>
     </div>
   );
@@ -71,21 +77,21 @@ function ScrollIndicator() {
 
 function Hero() {
   return (
-    <header className="min-h-[70vh] md:min-h-[80vh] flex flex-col justify-start pt-28 pb-12 md:pt-24 md:pb-0">
+    <header className="min-h-[70vh] md:min-h-[80vh] flex flex-col justify-start pt-28 pb-12 md:pt-24 md:pb-12">
       <div className="px-6 max-w-5xl mx-auto text-center mb-8">
         <div className="inline-flex items-center gap-2 border-2 border-black px-4 py-1.5 font-mono-tech uppercase text-[11px] bg-white">
           <span className="w-2 h-2 rounded-full bg-black animate-pulse" />
           For founders drowning in WhatsApp DMs
         </div>
       </div>
-      <h1 className="font-display text-center px-2" style={{ fontSize: "13vw" }}>
+      <h1 className="font-display text-center px-2 text-[14vw] md:text-[11vw]">
         NEVER MISS<br/>A LEAD<span className="inline-block">/</span>AGAIN.
       </h1>
-      <p className="font-mono-tech uppercase text-center mt-8 px-6 max-w-3xl mx-auto text-sm sm:text-base leading-relaxed">
+      <p className="font-mono-tech uppercase text-center mt-8 px-6 max-w-3xl mx-auto text-sm sm:text-base leading-relaxed md:pb-6">
         Your AI sales rep on WhatsApp. Replies in 3 seconds, sounds like you,<br className="hidden md:block"/>
         qualifies the lead, books the call, closes the sale — 24/7.
       </p>
-      <div className="mt-6 pt-36 sm:pt-0">
+        <div className="mt-6 pt-36 sm:pt-0 md:pt-10">
         <div className="grid grid-cols-3 items-center px-6 py-6 gap-6 border-t-2 border-black">
           <div className="font-mono-tech uppercase text-xs sm:text-sm">
             <div className="opacity-60">Avg. Reply</div>
@@ -108,16 +114,16 @@ function SkewedMarquee() {
   const text1 = "ANSWER EVERY LEAD — CLOSE WHILE YOU SLEEP — ";
   const text2 = "ZERO MISSED DMS • 3-SECOND REPLIES • 24/7 SALES • ";
   return (
-    <section className="bg-black -skew-y-2 mt-0 sm:mt-20 mb-20 pt-0 sm:pt-12 pb-12 overflow-hidden border-y-2 border-black">
+    <section className="bg-black -skew-y-2 mt-0 sm:mt-20 mb-20 pt-6 sm:pt-12 pb-6 sm:pb-12 overflow-hidden border-y-2 border-black">
       <div className="skew-y-2">
-        <div className="overflow-hidden whitespace-nowrap py-2">
+        <div className="overflow-hidden whitespace-nowrap py-1 sm:py-2">
           <div className="inline-flex animate-marquee">
             {Array.from({ length: 8 }).map((_, i) => (
               <span key={i} className="font-display text-[#25D366] pr-8" style={{ fontSize: "10vw" }}>{text1}</span>
             ))}
           </div>
         </div>
-        <div className="overflow-hidden whitespace-nowrap py-2">
+        <div className="overflow-hidden whitespace-nowrap py-1 sm:py-2">
           <div className="inline-flex animate-marquee-reverse">
             {Array.from({ length: 8 }).map((_, i) => (
               <span key={i} className="font-display text-white/80 pr-8" style={{ fontSize: "10vw" }}>{text2}</span>
