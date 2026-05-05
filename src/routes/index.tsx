@@ -85,8 +85,8 @@ function Hero() {
         Your AI sales rep on WhatsApp. Replies in 3 seconds, sounds like you,<br className="hidden md:block"/>
         qualifies the lead, books the call, closes the sale — 24/7.
       </p>
-      <div className="border-t-2 border-black mt-12 pt-36 sm:pt-0">
-        <div className="grid grid-cols-3 items-center px-6 py-6 gap-6">
+      <div className="mt-12 pt-36 sm:pt-0">
+        <div className="grid grid-cols-3 items-center px-6 py-6 gap-6 border-t-2 border-black">
           <div className="font-mono-tech uppercase text-xs sm:text-sm">
             <div className="opacity-60">Avg. Reply</div>
             <div className="font-bold mt-1">3 Seconds. Always.</div>
