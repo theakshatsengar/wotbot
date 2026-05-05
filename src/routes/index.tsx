@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowDown, ArrowUpRight, Check, CheckCheck, Bot, MessageCircle, AlertTriangle, Clock, TrendingUp, Menu, X } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Check, CheckCheck, Bot, MessageCircle, AlertTriangle, Clock, TrendingUp } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -26,7 +25,6 @@ function Index() {
 
 function Nav() {
   const links = ["Builder", "Templates", "Pricing", "Docs"];
-  const [isOpen, setIsOpen] = useState(false);
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-5 flex items-center justify-between relative">
       <a href="#" className="font-display text-xl tracking-tight">WABOT/01</a>
@@ -43,45 +41,9 @@ function Nav() {
         ))}
       </div>
       <div className="flex items-center gap-3">
-        <a href="#cta" className="hidden md:inline-flex bg-black text-white font-mono-tech uppercase px-5 py-2 rounded-full hover:bg-white hover:text-black transition-colors" style={{ fontSize: "12px" }}>
+        <a href="#cta" className="inline-flex bg-black text-white font-mono-tech uppercase px-5 py-2 rounded-full hover:bg-white hover:text-black transition-colors" style={{ fontSize: "12px" }}>
         Start Free →
         </a>
-        <button
-          type="button"
-          className="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border-2 border-white bg-black text-white"
-          aria-label={isOpen ? "Close navigation" : "Open navigation"}
-          aria-expanded={isOpen}
-          onClick={() => setIsOpen((prev) => !prev)}
-        >
-          {isOpen ? <X size={18} /> : <Menu size={18} />}
-        </button>
-      </div>
-      <div
-        className={`absolute top-full left-0 right-0 md:hidden transition-all ${isOpen ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 -translate-y-2"}`}
-      >
-        <div className="mx-6 mt-3 bg-black rounded-2xl p-4 shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
-          <div className="flex flex-col gap-2">
-            {links.map((l) => (
-              <a
-                key={l}
-                href={`#${l.toLowerCase()}`}
-                className="font-mono-tech uppercase text-white px-4 py-2 rounded-full transition-colors hover:bg-white hover:text-black"
-                style={{ fontSize: "12px" }}
-                onClick={() => setIsOpen(false)}
-              >
-                {l}
-              </a>
-            ))}
-            <a
-              href="#cta"
-              className="mt-2 inline-flex items-center justify-center bg-white text-black font-mono-tech uppercase px-4 py-2 rounded-full transition-colors hover:bg-[#25D366]"
-              style={{ fontSize: "12px" }}
-              onClick={() => setIsOpen(false)}
-            >
-              Start Free →
-            </a>
-          </div>
-        </div>
       </div>
     </nav>
   );
