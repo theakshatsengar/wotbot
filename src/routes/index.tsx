@@ -409,7 +409,7 @@ function CTA() {
     <section id="cta" className="bg-[#25D366] py-32 px-6 text-center border-t-2 border-black">
       <div className="font-mono-tech uppercase text-xs mb-6 opacity-70">[ Last Call / 07 ]</div>
       <h2 className="font-display" style={{ fontSize: "13vw", lineHeight: 0.9 }}>
-        STOP LOSING<br/>LEADS TONIGHT.
+        STOP LOSING<br/>LEADS.
       </h2>
       <p className="max-w-xl mx-auto mt-8 text-base sm:text-lg">
         Plug in your WhatsApp number. Train the bot on your business in 5 minutes.
