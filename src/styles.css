@@ -64,9 +64,10 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(0.7 0.24 40);
+  --background: oklch(0.72 0.18 145);
   --foreground: oklch(0 0 0);
   --brand-orange: oklch(0.7 0.24 40);
+  --brand-green: oklch(0.72 0.18 145);
   --brand-black: oklch(0 0 0);
   --brand-white: oklch(1 0 0);
   --card: oklch(1 0 0);
