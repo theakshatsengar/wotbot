@@ -3,6 +3,7 @@ import { useState } from "react";
 import {
   MessageCircle, Bot, Send, Search, Settings, BarChart3, Users, Inbox,
   Zap, CheckCheck, ArrowUpRight, Plus, Circle, LogOut,
+  Trash2, Edit3, Power, Phone, Mail, Tag, Save,
 } from "lucide-react";
 
 export const Route = createFileRoute("/dashboard")({
@@ -82,7 +83,7 @@ const STATS = [
 
 function Dashboard() {
   const [activeId, setActiveId] = useState(CHATS[0].id);
-  const [tab, setTab] = useState<"overview" | "chats">("overview");
+  const [tab, setTab] = useState<"overview" | "chats" | "training" | "automations" | "contacts" | "settings">("overview");
   const active = CHATS.find((c) => c.id === activeId)!;
 
   return (
@@ -96,10 +97,10 @@ function Dashboard() {
         <nav className="flex-1 p-3 space-y-1">
           <SideBtn icon={BarChart3} label="Overview" active={tab === "overview"} onClick={() => setTab("overview")} />
           <SideBtn icon={Inbox} label="Chats" badge={3} active={tab === "chats"} onClick={() => setTab("chats")} />
-          <SideBtn icon={Bot} label="Bot Training" />
-          <SideBtn icon={Zap} label="Automations" />
-          <SideBtn icon={Users} label="Contacts" />
-          <SideBtn icon={Settings} label="Settings" />
+          <SideBtn icon={Bot} label="Bot Training" active={tab === "training"} onClick={() => setTab("training")} />
+          <SideBtn icon={Zap} label="Automations" active={tab === "automations"} onClick={() => setTab("automations")} />
+          <SideBtn icon={Users} label="Contacts" active={tab === "contacts"} onClick={() => setTab("contacts")} />
+          <SideBtn icon={Settings} label="Settings" active={tab === "settings"} onClick={() => setTab("settings")} />
         </nav>
         <div className="p-3 border-t border-white/15">
           <div className="flex items-center gap-3 px-2 py-2">
@@ -117,8 +118,8 @@ function Dashboard() {
       <main className="flex-1 flex flex-col min-w-0">
         <header className="border-b-2 border-black bg-[#25D366] px-6 py-4 flex items-center justify-between">
           <div>
-            <div className="font-mono-tech uppercase text-[11px] opacity-70">[ {tab === "overview" ? "Dashboard / 01" : "Inbox / 02"} ]</div>
-            <h1 className="font-display text-2xl uppercase mt-0.5">{tab === "overview" ? "Overview" : "All Conversations"}</h1>
+            <div className="font-mono-tech uppercase text-[11px] opacity-70">[ {HEADERS[tab].kicker} ]</div>
+            <h1 className="font-display text-2xl uppercase mt-0.5">{HEADERS[tab].title}</h1>
           </div>
           <div className="flex items-center gap-3">
             <div className="hidden md:flex items-center gap-2 bg-white border-2 border-black px-3 py-2">
@@ -131,11 +132,25 @@ function Dashboard() {
           </div>
         </header>
 
-        {tab === "overview" ? <Overview /> : <ChatsView chats={CHATS} active={active} onSelect={setActiveId} />}
+        {tab === "overview" && <Overview />}
+        {tab === "chats" && <ChatsView chats={CHATS} active={active} onSelect={setActiveId} />}
+        {tab === "training" && <Training />}
+        {tab === "automations" && <Automations />}
+        {tab === "contacts" && <Contacts />}
+        {tab === "settings" && <SettingsView />}
       </main>
     </div>
   );
 }
+
+const HEADERS: Record<string, { kicker: string; title: string }> = {
+  overview: { kicker: "Dashboard / 01", title: "Overview" },
+  chats: { kicker: "Inbox / 02", title: "All Conversations" },
+  training: { kicker: "Brain / 03", title: "Bot Training" },
+  automations: { kicker: "Flows / 04", title: "Automations" },
+  contacts: { kicker: "CRM / 05", title: "Contacts" },
+  settings: { kicker: "Config / 06", title: "Settings" },
+};
 
 function SideBtn({ icon: Icon, label, active, badge, onClick }: { icon: any; label: string; active?: boolean; badge?: number; onClick?: () => void }) {
   return (
