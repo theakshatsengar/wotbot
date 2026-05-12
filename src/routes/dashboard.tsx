@@ -3,6 +3,7 @@ import { useState } from "react";
 import {
   MessageCircle, Bot, Send, Search, Settings, BarChart3, Users, Inbox,
   Zap, CheckCheck, ArrowUpRight, Plus, Circle, LogOut,
+  Trash2, Edit3, Power, Phone, Mail, Tag, Save,
 } from "lucide-react";
 
 export const Route = createFileRoute("/dashboard")({
@@ -82,7 +83,7 @@ const STATS = [
 
 function Dashboard() {
   const [activeId, setActiveId] = useState(CHATS[0].id);
-  const [tab, setTab] = useState<"overview" | "chats">("overview");
+  const [tab, setTab] = useState<"overview" | "chats" | "training" | "automations" | "contacts" | "settings">("overview");
   const active = CHATS.find((c) => c.id === activeId)!;
 
   return (
@@ -96,10 +97,10 @@ function Dashboard() {
         <nav className="flex-1 p-3 space-y-1">
           <SideBtn icon={BarChart3} label="Overview" active={tab === "overview"} onClick={() => setTab("overview")} />
           <SideBtn icon={Inbox} label="Chats" badge={3} active={tab === "chats"} onClick={() => setTab("chats")} />
-          <SideBtn icon={Bot} label="Bot Training" />
-          <SideBtn icon={Zap} label="Automations" />
-          <SideBtn icon={Users} label="Contacts" />
-          <SideBtn icon={Settings} label="Settings" />
+          <SideBtn icon={Bot} label="Bot Training" active={tab === "training"} onClick={() => setTab("training")} />
+          <SideBtn icon={Zap} label="Automations" active={tab === "automations"} onClick={() => setTab("automations")} />
+          <SideBtn icon={Users} label="Contacts" active={tab === "contacts"} onClick={() => setTab("contacts")} />
+          <SideBtn icon={Settings} label="Settings" active={tab === "settings"} onClick={() => setTab("settings")} />
         </nav>
         <div className="p-3 border-t border-white/15">
           <div className="flex items-center gap-3 px-2 py-2">
@@ -117,8 +118,8 @@ function Dashboard() {
       <main className="flex-1 flex flex-col min-w-0">
         <header className="border-b-2 border-black bg-[#25D366] px-6 py-4 flex items-center justify-between">
           <div>
-            <div className="font-mono-tech uppercase text-[11px] opacity-70">[ {tab === "overview" ? "Dashboard / 01" : "Inbox / 02"} ]</div>
-            <h1 className="font-display text-2xl uppercase mt-0.5">{tab === "overview" ? "Overview" : "All Conversations"}</h1>
+            <div className="font-mono-tech uppercase text-[11px] opacity-70">[ {HEADERS[tab].kicker} ]</div>
+            <h1 className="font-display text-2xl uppercase mt-0.5">{HEADERS[tab].title}</h1>
           </div>
           <div className="flex items-center gap-3">
             <div className="hidden md:flex items-center gap-2 bg-white border-2 border-black px-3 py-2">
@@ -131,9 +132,324 @@ function Dashboard() {
           </div>
         </header>
 
-        {tab === "overview" ? <Overview /> : <ChatsView chats={CHATS} active={active} onSelect={setActiveId} />}
+        {tab === "overview" && <Overview />}
+        {tab === "chats" && <ChatsView chats={CHATS} active={active} onSelect={setActiveId} />}
+        {tab === "training" && <Training />}
+        {tab === "automations" && <Automations />}
+        {tab === "contacts" && <Contacts />}
+        {tab === "settings" && <SettingsView />}
       </main>
     </div>
+  );
+}
+
+const HEADERS: Record<string, { kicker: string; title: string }> = {
+  overview: { kicker: "Dashboard / 01", title: "Overview" },
+  chats: { kicker: "Inbox / 02", title: "All Conversations" },
+  training: { kicker: "Brain / 03", title: "Bot Training" },
+  automations: { kicker: "Flows / 04", title: "Automations" },
+  contacts: { kicker: "CRM / 05", title: "Contacts" },
+  settings: { kicker: "Config / 06", title: "Settings" },
+};
+
+function Section({ children }: { children: React.ReactNode }) {
+  return <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-[#25D366]">{children}</div>;
+}
+
+function Card({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) {
+  return (
+    <div className="bg-white border-2 border-black">
+      <div className="px-5 py-3 border-b-2 border-black flex items-center justify-between">
+        <h3 className="font-display uppercase text-sm">{title}</h3>
+        {action}
+      </div>
+      <div className="p-5">{children}</div>
+    </div>
+  );
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <label className="block">
+      <span className="font-mono-tech uppercase text-[10px] opacity-60">{label}</span>
+      <div className="mt-1">{children}</div>
+    </label>
+  );
+}
+
+const inputCls =
+  "w-full bg-white border-2 border-black px-3 py-2 text-sm outline-none focus:bg-[#25D366]/20 placeholder:text-black/40";
+
+/* ────── Bot Training ────── */
+function Training() {
+  const [tone, setTone] = useState("Friendly");
+  const [name, setName] = useState("Sara");
+  const [greeting, setGreeting] = useState("Hey 👋 I'm Sara from Acme — how can I help?");
+  const [faqs, setFaqs] = useState([
+    { q: "Do you ship internationally?", a: "Yes — to 40+ countries. Free over $200." },
+    { q: "What's your return policy?", a: "30 days, no questions asked." },
+  ]);
+  const [docs, setDocs] = useState(["product-catalog.pdf", "brand-voice.md", "shipping-policy.txt"]);
+
+  return (
+    <Section>
+      <div className="grid lg:grid-cols-2 gap-6">
+        <Card title="Bot Identity">
+          <div className="space-y-4">
+            <Field label="Bot Name"><input className={inputCls} value={name} onChange={(e) => setName(e.target.value)} /></Field>
+            <Field label="Tone">
+              <div className="flex gap-2 flex-wrap">
+                {["Friendly", "Professional", "Playful", "Direct"].map((t) => (
+                  <button key={t} onClick={() => setTone(t)}
+                    className={`font-mono-tech uppercase text-[10px] px-3 py-1.5 border-2 border-black ${tone === t ? "bg-black text-[#25D366]" : "bg-white hover:bg-black/5"}`}>
+                    {t}
+                  </button>
+                ))}
+              </div>
+            </Field>
+            <Field label="Greeting Message">
+              <textarea rows={3} className={inputCls} value={greeting} onChange={(e) => setGreeting(e.target.value)} />
+            </Field>
+            <button className="bg-black text-white font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-2 border-2 border-black hover:bg-[#25D366] hover:text-black">
+              <Save size={14} /> Save Identity
+            </button>
+          </div>
+        </Card>
+
+        <Card title="Knowledge Base" action={<span className="font-mono-tech text-[10px] uppercase opacity-60">{docs.length} files</span>}>
+          <ul className="space-y-2 mb-4">
+            {docs.map((d, i) => (
+              <li key={d} className="flex items-center justify-between border-2 border-black px-3 py-2">
+                <span className="font-mono-tech text-xs">{d}</span>
+                <button onClick={() => setDocs(docs.filter((_, j) => j !== i))} className="opacity-60 hover:opacity-100"><Trash2 size={14} /></button>
+              </li>
+            ))}
+          </ul>
+          <button onClick={() => setDocs([...docs, `new-doc-${docs.length + 1}.pdf`])}
+            className="bg-[#25D366] font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-2 border-2 border-black hover:bg-black hover:text-[#25D366]">
+            <Plus size={14} /> Upload File
+          </button>
+        </Card>
+      </div>
+
+      <Card title="Trained FAQs" action={
+        <button onClick={() => setFaqs([...faqs, { q: "New question", a: "New answer" }])}
+          className="font-mono-tech uppercase text-[10px] px-3 py-1.5 border-2 border-black hover:bg-black hover:text-[#25D366] inline-flex items-center gap-1">
+          <Plus size={12} /> Add
+        </button>
+      }>
+        <div className="space-y-3">
+          {faqs.map((f, i) => (
+            <div key={i} className="border-2 border-black p-3 space-y-2">
+              <input className={inputCls} value={f.q} onChange={(e) => { const n = [...faqs]; n[i].q = e.target.value; setFaqs(n); }} />
+              <textarea rows={2} className={inputCls} value={f.a} onChange={(e) => { const n = [...faqs]; n[i].a = e.target.value; setFaqs(n); }} />
+              <button onClick={() => setFaqs(faqs.filter((_, j) => j !== i))}
+                className="font-mono-tech uppercase text-[10px] inline-flex items-center gap-1 hover:text-red-700">
+                <Trash2 size={12} /> Remove
+              </button>
+            </div>
+          ))}
+        </div>
+      </Card>
+    </Section>
+  );
+}
+
+/* ────── Automations ────── */
+type Flow = { id: string; name: string; trigger: string; action: string; on: boolean; runs: number };
+function Automations() {
+  const [flows, setFlows] = useState<Flow[]>([
+    { id: "a1", name: "Welcome New Lead", trigger: "First message received", action: "Send greeting + ask intent", on: true, runs: 247 },
+    { id: "a2", name: "Abandoned Cart Nudge", trigger: "Checkout link unclicked > 30m", action: "Send reminder + 10% code", on: true, runs: 38 },
+    { id: "a3", name: "After-Hours Auto-Reply", trigger: "Message between 10pm–7am", action: "Send 'we'll respond by 9am'", on: false, runs: 121 },
+    { id: "a4", name: "Hand Off To Human", trigger: "User asks for 'human' or 'agent'", action: "Notify team + pause bot", on: true, runs: 14 },
+    { id: "a5", name: "Post-Purchase Thank You", trigger: "Payment confirmed", action: "Send receipt + review request", on: true, runs: 63 },
+  ]);
+
+  return (
+    <Section>
+      <Card title="Active Flows" action={
+        <button className="font-mono-tech uppercase text-[10px] px-3 py-1.5 border-2 border-black hover:bg-black hover:text-[#25D366] inline-flex items-center gap-1">
+          <Plus size={12} /> New Flow
+        </button>
+      }>
+        <div className="divide-y-2 divide-black -m-5">
+          {flows.map((f) => (
+            <div key={f.id} className="p-5 flex items-start gap-4">
+              <button
+                onClick={() => setFlows(flows.map((x) => x.id === f.id ? { ...x, on: !x.on } : x))}
+                className={`shrink-0 w-12 h-12 border-2 border-black flex items-center justify-center ${f.on ? "bg-[#25D366]" : "bg-white"}`}
+              >
+                <Power size={16} className={f.on ? "text-black" : "text-black/30"} />
+              </button>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2">
+                  <h4 className="font-display uppercase text-sm">{f.name}</h4>
+                  <span className={`font-mono-tech uppercase text-[10px] px-2 py-0.5 border border-black ${f.on ? "bg-[#25D366]" : "bg-white opacity-60"}`}>
+                    {f.on ? "Live" : "Paused"}
+                  </span>
+                </div>
+                <div className="mt-2 grid sm:grid-cols-2 gap-2 font-mono-tech text-[11px] uppercase">
+                  <div><span className="opacity-60">When → </span>{f.trigger}</div>
+                  <div><span className="opacity-60">Then → </span>{f.action}</div>
+                </div>
+                <div className="mt-2 font-mono-tech text-[10px] uppercase opacity-60">▲ {f.runs} runs this week</div>
+              </div>
+              <button className="opacity-60 hover:opacity-100"><Edit3 size={14} /></button>
+              <button onClick={() => setFlows(flows.filter((x) => x.id !== f.id))} className="opacity-60 hover:opacity-100"><Trash2 size={14} /></button>
+            </div>
+          ))}
+        </div>
+      </Card>
+    </Section>
+  );
+}
+
+/* ────── Contacts ────── */
+type Contact = { id: string; name: string; phone: string; tags: string[]; status: "Lead" | "Customer" | "Cold"; last: string; spent: string };
+function Contacts() {
+  const [contacts] = useState<Contact[]>([
+    { id: "c1", name: "Aman K.", phone: "+971 50 392 1184", tags: ["Linen", "Dubai"], status: "Customer", last: "23:48", spent: "$284" },
+    { id: "c2", name: "Priya R.", phone: "+91 98765 41203", tags: ["Silk", "Returning"], status: "Lead", last: "23:31", spent: "$0" },
+    { id: "c3", name: "Marcus O.", phone: "+44 7700 900812", tags: ["Support"], status: "Customer", last: "22:14", spent: "$540" },
+    { id: "c4", name: "Lena K.", phone: "+49 151 22334455", tags: ["Booking"], status: "Customer", last: "21:02", spent: "$120" },
+    { id: "c5", name: "Sara T.", phone: "+1 415 555 0192", tags: ["Order"], status: "Customer", last: "19:48", spent: "$78" },
+    { id: "c6", name: "Diego H.", phone: "+34 612 88 21 33", tags: ["Wholesale"], status: "Cold", last: "Yesterday", spent: "$0" },
+  ]);
+  const [q, setQ] = useState("");
+  const filtered = contacts.filter((c) => c.name.toLowerCase().includes(q.toLowerCase()) || c.phone.includes(q));
+
+  return (
+    <Section>
+      <div className="flex items-center gap-3">
+        <div className="flex-1 flex items-center gap-2 bg-white border-2 border-black px-3 py-2">
+          <Search size={14} />
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search by name or phone…"
+            className="bg-transparent outline-none font-mono-tech text-xs uppercase placeholder:text-black/40 flex-1" />
+        </div>
+        <button className="bg-black text-white font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-2 border-2 border-black hover:bg-[#25D366] hover:text-black">
+          <Plus size={14} /> Add Contact
+        </button>
+      </div>
+
+      <div className="bg-white border-2 border-black overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead className="bg-black text-white font-mono-tech uppercase text-[10px]">
+            <tr>
+              <th className="text-left px-4 py-3">Name</th>
+              <th className="text-left px-4 py-3">Phone</th>
+              <th className="text-left px-4 py-3">Status</th>
+              <th className="text-left px-4 py-3">Tags</th>
+              <th className="text-left px-4 py-3">Spent</th>
+              <th className="text-left px-4 py-3">Last</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {filtered.map((c) => (
+              <tr key={c.id} className="border-t border-black/10 hover:bg-[#25D366]/20">
+                <td className="px-4 py-3 font-bold flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-full bg-[#25D366] border-2 border-black flex items-center justify-center font-display text-xs">{c.name[0]}</div>
+                  {c.name}
+                </td>
+                <td className="px-4 py-3 font-mono-tech text-xs">{c.phone}</td>
+                <td className="px-4 py-3">
+                  <span className={`font-mono-tech uppercase text-[10px] px-2 py-0.5 border-2 border-black ${
+                    c.status === "Customer" ? "bg-[#25D366]" : c.status === "Lead" ? "bg-white" : "bg-black text-white"
+                  }`}>{c.status}</span>
+                </td>
+                <td className="px-4 py-3">
+                  <div className="flex gap-1 flex-wrap">
+                    {c.tags.map((t) => (
+                      <span key={t} className="font-mono-tech text-[10px] uppercase px-1.5 py-0.5 border border-black inline-flex items-center gap-1">
+                        <Tag size={9} />{t}
+                      </span>
+                    ))}
+                  </div>
+                </td>
+                <td className="px-4 py-3 font-mono-tech text-xs">{c.spent}</td>
+                <td className="px-4 py-3 font-mono-tech text-[10px] uppercase opacity-60">{c.last}</td>
+                <td className="px-4 py-3 text-right">
+                  <button className="opacity-60 hover:opacity-100 mr-2"><MessageCircle size={14} /></button>
+                  <button className="opacity-60 hover:opacity-100"><Phone size={14} /></button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Section>
+  );
+}
+
+/* ────── Settings ────── */
+function SettingsView() {
+  const [biz, setBiz] = useState("Acme Studio");
+  const [num, setNum] = useState("+1 415 555 0100");
+  const [email, setEmail] = useState("hello@acme.co");
+  const [hours, setHours] = useState("Mon–Fri, 9am–6pm");
+  const [notif, setNotif] = useState({ hot: true, handoff: true, daily: false });
+
+  return (
+    <Section>
+      <div className="grid lg:grid-cols-2 gap-6">
+        <Card title="Business Profile">
+          <div className="space-y-4">
+            <Field label="Business Name"><input className={inputCls} value={biz} onChange={(e) => setBiz(e.target.value)} /></Field>
+            <Field label="WhatsApp Number">
+              <div className="flex items-center gap-2">
+                <Phone size={14} />
+                <input className={inputCls} value={num} onChange={(e) => setNum(e.target.value)} />
+              </div>
+            </Field>
+            <Field label="Reply-To Email">
+              <div className="flex items-center gap-2">
+                <Mail size={14} />
+                <input className={inputCls} value={email} onChange={(e) => setEmail(e.target.value)} />
+              </div>
+            </Field>
+            <Field label="Business Hours"><input className={inputCls} value={hours} onChange={(e) => setHours(e.target.value)} /></Field>
+          </div>
+        </Card>
+
+        <Card title="Notifications">
+          <div className="space-y-3">
+            {([
+              ["hot", "Notify me on hot leads"],
+              ["handoff", "Notify me on bot handoffs"],
+              ["daily", "Send daily summary email"],
+            ] as const).map(([k, label]) => (
+              <label key={k} className="flex items-center justify-between border-2 border-black px-3 py-2.5">
+                <span className="font-mono-tech uppercase text-[11px]">{label}</span>
+                <button onClick={() => setNotif({ ...notif, [k]: !notif[k] })}
+                  className={`w-12 h-6 border-2 border-black relative ${notif[k] ? "bg-[#25D366]" : "bg-white"}`}>
+                  <span className={`absolute top-0 ${notif[k] ? "right-0" : "left-0"} w-5 h-[18px] bg-black transition-all`} />
+                </button>
+              </label>
+            ))}
+          </div>
+        </Card>
+
+        <Card title="Plan & Billing">
+          <div className="font-mono-tech text-[11px] uppercase opacity-60">Current Plan</div>
+          <div className="font-display text-2xl uppercase mt-1">Operator — $49/mo</div>
+          <p className="font-mono-tech text-[11px] uppercase mt-3 opacity-70">Renews May 28, 2026 • 247 / 5,000 conversations used</p>
+          <div className="w-full h-2 bg-black/10 border border-black mt-2"><div className="h-full bg-[#25D366]" style={{ width: "5%" }} /></div>
+          <div className="flex gap-2 mt-4">
+            <button className="bg-black text-white font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full border-2 border-black hover:bg-[#25D366] hover:text-black">Upgrade</button>
+            <button className="font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full border-2 border-black hover:bg-black hover:text-white">Manage Billing</button>
+          </div>
+        </Card>
+
+        <Card title="Danger Zone">
+          <p className="font-mono-tech text-[11px] uppercase opacity-70">These actions are permanent.</p>
+          <div className="flex gap-2 mt-4 flex-wrap">
+            <button className="font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full border-2 border-black hover:bg-black hover:text-white">Pause Bot</button>
+            <button className="font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full border-2 border-black bg-black text-white hover:bg-red-700 hover:border-red-700">Delete Workspace</button>
+          </div>
+        </Card>
+      </div>
+    </Section>
   );
 }
 
