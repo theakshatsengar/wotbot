@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowDown, ArrowUpRight, Check, CheckCheck, Bot, MessageCircle, AlertTriangle, Clock, TrendingUp } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -384,9 +384,9 @@ function CTA() {
         Wake up to qualified leads, booked calls, and closed sales.
       </p>
       <p className="font-mono-tech uppercase text-xs mt-6 opacity-70">No credit card • Live in 5 minutes • 30-day money-back</p>
-      <button className="mt-10 bg-black text-white font-mono-tech uppercase text-sm px-10 py-5 rounded-full transition-transform hover:scale-110 inline-flex items-center gap-3">
+      <Link to="/dashboard" className="mt-10 bg-black text-white font-mono-tech uppercase text-sm px-10 py-5 rounded-full transition-transform hover:scale-110 inline-flex items-center gap-3">
         <MessageCircle size={18} /> Catch My Next Lead Free →
-      </button>
+      </Link>
     </section>
   );
 }
