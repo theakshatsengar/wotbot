@@ -89,10 +89,10 @@ function Dashboard() {
   return (
     <div className="min-h-screen bg-neutral-950 text-black flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-black text-white flex flex-col border-r-2 border-black">
-        <div className="px-5 py-5 border-b border-white/15 flex items-center justify-between">
+      <aside className="w-64 bg-[#25D366] text-black flex flex-col border-r-2 border-black">
+        <div className="px-5 py-5 border-b border-black/20 flex items-center justify-between">
           <Link to="/" className="font-display text-lg">WABOT/01</Link>
-          <span className="font-mono-tech text-[10px] text-[#25D366] uppercase">● Live</span>
+          <span className="font-mono-tech text-[10px] text-black uppercase">● Live</span>
         </div>
         <nav className="flex-1 p-3 space-y-1">
           <SideBtn icon={BarChart3} label="Overview" active={tab === "overview"} onClick={() => setTab("overview")} />
@@ -102,7 +102,7 @@ function Dashboard() {
           <SideBtn icon={Users} label="Contacts" active={tab === "contacts"} onClick={() => setTab("contacts")} />
           <SideBtn icon={Settings} label="Settings" active={tab === "settings"} onClick={() => setTab("settings")} />
         </nav>
-        <div className="p-3 border-t border-white/15">
+        <div className="p-3 border-t border-black/20">
           <div className="flex items-center gap-3 px-2 py-2">
             <div className="w-8 h-8 rounded-full bg-[#25D366] border-2 border-white flex items-center justify-center font-display text-black text-sm">A</div>
             <div className="flex-1 min-w-0">
