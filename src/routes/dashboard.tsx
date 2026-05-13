@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  MessageCircle, Bot, Send, Search, Settings, BarChart3, Users, Inbox,
+  MessageCircle, Bot, Send, Search, Settings, BarChart3, Users, Inbox, Menu,
   Zap, CheckCheck, ArrowUpRight, Plus, Circle, LogOut,
   Trash2, Edit3, Power, Phone, Mail, Tag, Save,
 } from "lucide-react";
@@ -84,6 +84,7 @@ const STATS = [
 function Dashboard() {
   const [activeId, setActiveId] = useState(CHATS[0].id);
   const [tab, setTab] = useState<"overview" | "chats" | "training" | "automations" | "contacts" | "settings">("overview");
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const active = CHATS.find((c) => c.id === activeId)!;
 
   return (
@@ -92,15 +93,26 @@ function Dashboard() {
       <aside className="w-full md:w-64 bg-black text-white flex flex-col border-b-2 md:border-b-0 md:border-r-2 border-[#2A323A] md:shrink-0">
         <div className="min-h-[64px] md:min-h-[80px] px-4 md:px-5 py-3 md:py-4 border-b-2 border-[#2A323A] flex items-center justify-between">
           <Link to="/" className="font-display text-xl md:text-2xl">WABOT/01</Link>
-          <span className="font-mono-tech text-[10px] text-[#25D366] uppercase">● Live</span>
+          <div className="flex items-center gap-3">
+            <span className="font-mono-tech text-[10px] text-[#25D366] uppercase">● Live</span>
+            <button
+              onClick={() => setMobileNavOpen((open) => !open)}
+              className="md:hidden p-2 border-2 border-[#2A323A] hover:border-[#25D366] transition-colors"
+              aria-label="Toggle navigation"
+            >
+              <Menu size={16} />
+            </button>
+          </div>
         </div>
-        <nav className="flex md:flex-col flex-row gap-2 md:gap-2 overflow-x-auto md:overflow-visible px-3 py-2 md:p-3">
-          <SideBtn icon={BarChart3} label="Overview" active={tab === "overview"} onClick={() => setTab("overview")} />
-          <SideBtn icon={Inbox} label="Chats" badge={3} active={tab === "chats"} onClick={() => setTab("chats")} />
-          <SideBtn icon={Bot} label="Bot Training" active={tab === "training"} onClick={() => setTab("training")} />
-          <SideBtn icon={Zap} label="Automations" active={tab === "automations"} onClick={() => setTab("automations")} />
-          <SideBtn icon={Users} label="Contacts" active={tab === "contacts"} onClick={() => setTab("contacts")} />
-          <SideBtn icon={Settings} label="Settings" active={tab === "settings"} onClick={() => setTab("settings")} />
+        <nav
+          className={`${mobileNavOpen ? "flex" : "hidden"} md:flex flex-col gap-2 px-3 py-3 md:p-3`}
+        >
+          <SideBtn icon={BarChart3} label="Overview" active={tab === "overview"} onClick={() => { setTab("overview"); setMobileNavOpen(false); }} />
+          <SideBtn icon={Inbox} label="Chats" badge={3} active={tab === "chats"} onClick={() => { setTab("chats"); setMobileNavOpen(false); }} />
+          <SideBtn icon={Bot} label="Bot Training" active={tab === "training"} onClick={() => { setTab("training"); setMobileNavOpen(false); }} />
+          <SideBtn icon={Zap} label="Automations" active={tab === "automations"} onClick={() => { setTab("automations"); setMobileNavOpen(false); }} />
+          <SideBtn icon={Users} label="Contacts" active={tab === "contacts"} onClick={() => { setTab("contacts"); setMobileNavOpen(false); }} />
+          <SideBtn icon={Settings} label="Settings" active={tab === "settings"} onClick={() => { setTab("settings"); setMobileNavOpen(false); }} />
         </nav>
         <div className="mt-auto p-3 border-t border-[#2A323A]">
           <div className="flex items-center gap-3 px-2 py-2">
