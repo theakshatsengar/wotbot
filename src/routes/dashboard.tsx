@@ -87,14 +87,14 @@ function Dashboard() {
   const active = CHATS.find((c) => c.id === activeId)!;
 
   return (
-    <div className="min-h-screen bg-[#0B0F12] text-neutral-100 flex">
+    <div className="min-h-screen bg-[#0B0F12] text-neutral-100 flex flex-col md:flex-row">
       {/* Sidebar */}
-      <aside className="w-64 bg-black text-white flex flex-col border-r-2 border-black">
-        <div className="min-h-[80px] px-5 py-4 border-b-2 border-[#2A323A] flex items-center justify-between">
-          <Link to="/" className="font-display text-lg">WABOT/01</Link>
+      <aside className="w-full md:w-64 bg-black text-white flex flex-col border-b-2 md:border-b-0 md:border-r-2 border-[#2A323A] md:shrink-0">
+        <div className="min-h-[64px] md:min-h-[80px] px-4 md:px-5 py-3 md:py-4 border-b-2 border-[#2A323A] flex items-center justify-between">
+          <Link to="/" className="font-display text-xl md:text-2xl">WABOT/01</Link>
           <span className="font-mono-tech text-[10px] text-[#25D366] uppercase">● Live</span>
         </div>
-        <nav className="flex-1 p-3 space-y-1">
+        <nav className="flex md:flex-col flex-row gap-2 md:gap-1 overflow-x-auto md:overflow-visible px-3 py-2 md:p-3">
           <SideBtn icon={BarChart3} label="Overview" active={tab === "overview"} onClick={() => setTab("overview")} />
           <SideBtn icon={Inbox} label="Chats" badge={3} active={tab === "chats"} onClick={() => setTab("chats")} />
           <SideBtn icon={Bot} label="Bot Training" active={tab === "training"} onClick={() => setTab("training")} />
@@ -102,7 +102,7 @@ function Dashboard() {
           <SideBtn icon={Users} label="Contacts" active={tab === "contacts"} onClick={() => setTab("contacts")} />
           <SideBtn icon={Settings} label="Settings" active={tab === "settings"} onClick={() => setTab("settings")} />
         </nav>
-        <div className="p-3 border-t border-white/15">
+        <div className="p-3 border-t border-[#2A323A]">
           <div className="flex items-center gap-3 px-2 py-2">
             <div className="w-8 h-8 rounded-full bg-[#25D366] border-2 border-white flex items-center justify-center font-display text-black text-sm">A</div>
             <div className="flex-1 min-w-0">
@@ -116,7 +116,7 @@ function Dashboard() {
 
       {/* Main */}
       <main className="flex-1 flex flex-col min-w-0">
-        <header className="min-h-[80px] border-b-2 border-[#2A323A] bg-[#12171C] px-6 py-4 flex items-center justify-between text-neutral-100">
+        <header className="min-h-[64px] md:min-h-[80px] border-b-2 border-[#2A323A] bg-[#12171C] px-4 md:px-6 py-3 md:py-4 flex items-center justify-between text-neutral-100">
           <div>
             <div className="font-mono-tech uppercase text-[11px] opacity-70">[ {HEADERS[tab].kicker} ]</div>
             <h1 className="font-display text-2xl uppercase mt-0.5">{HEADERS[tab].title}</h1>
@@ -153,17 +153,17 @@ const HEADERS: Record<string, { kicker: string; title: string }> = {
 };
 
 function Section({ children }: { children: React.ReactNode }) {
-  return <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-[#0B0F12]">{children}</div>;
+  return <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 bg-[#0B0F12]">{children}</div>;
 }
 
 function Card({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) {
   return (
     <div className="bg-[#151A1E] border-2 border-[#2A323A] text-neutral-100">
-      <div className="px-5 py-3 border-b-2 border-[#2A323A] flex items-center justify-between">
+      <div className="px-4 md:px-5 py-3 border-b-2 border-[#2A323A] flex items-center justify-between">
         <h3 className="font-display uppercase text-sm">{title}</h3>
         {action}
       </div>
-      <div className="p-5">{children}</div>
+      <div className="p-4 md:p-5">{children}</div>
     </div>
   );
 }
@@ -457,7 +457,7 @@ function SideBtn({ icon: Icon, label, active, badge, onClick }: { icon: any; lab
   return (
     <button
       onClick={onClick}
-      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded font-mono-tech uppercase text-[11px] transition-colors ${
+      className={`w-auto md:w-full shrink-0 flex items-center gap-3 px-3 py-2 rounded font-mono-tech uppercase text-[10px] md:text-[11px] whitespace-nowrap transition-colors ${
         active ? "bg-[#25D366] text-black" : "text-white hover:bg-white/10"
       }`}
     >
@@ -472,11 +472,11 @@ function SideBtn({ icon: Icon, label, active, badge, onClick }: { icon: any; lab
 
 function Overview() {
   return (
-    <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-[#0B0F12]">
+    <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 bg-[#0B0F12]">
       {/* Stats grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-2 border-[#2A323A] bg-[#151A1E]">
         {STATS.map((s, i) => (
-          <div key={s.label} className={`p-5 ${i > 0 ? "border-l-0 md:border-l-2 border-[#2A323A]" : ""} ${i >= 2 ? "border-t-2 md:border-t-0 border-[#2A323A]" : ""}`}>
+          <div key={s.label} className={`p-4 md:p-5 ${i > 0 ? "border-l-0 md:border-l-2 border-[#2A323A]" : ""} ${i >= 2 ? "border-t-2 md:border-t-0 border-[#2A323A]" : ""}`}>
             <div className="font-mono-tech uppercase text-[10px] opacity-60">{s.label}</div>
             <div className="font-display mt-2" style={{ fontSize: "32px", lineHeight: 1 }}>{s.value}</div>
             <div className="font-mono-tech uppercase text-[10px] mt-2 text-white/60">▲ {s.delta}</div>
@@ -485,14 +485,14 @@ function Overview() {
       </div>
 
       {/* Two-column area */}
-      <div className="grid lg:grid-cols-3 gap-6">
+      <div className="grid lg:grid-cols-3 gap-4 md:gap-6">
         {/* Activity */}
         <div className="lg:col-span-2 bg-[#151A1E] border-2 border-[#2A323A]">
           <div className="px-5 py-3 border-b-2 border-[#2A323A] flex items-center justify-between">
             <h3 className="font-display uppercase text-sm">Last 24 Hours</h3>
             <span className="font-mono-tech text-[10px] uppercase opacity-60">Live</span>
           </div>
-          <div className="p-5">
+          <div className="p-4 md:p-5">
             <div className="flex items-end gap-2 h-40">
               {[40, 65, 30, 80, 55, 90, 70, 45, 85, 60, 95, 75].map((h, i) => (
                 <div key={i} className="flex-1 bg-[#2A323A] hover:bg-[#25D366] transition-colors" style={{ height: `${h}%` }} />
@@ -526,7 +526,7 @@ function Overview() {
       </div>
 
       {/* Bot status */}
-      <div className="bg-[#11161B] text-neutral-100 border-2 border-[#2A323A] p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="bg-[#11161B] text-neutral-100 border-2 border-[#2A323A] p-4 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <div className="font-mono-tech uppercase text-[10px] text-[#25D366]">[ Bot Status ]</div>
           <h3 className="font-display uppercase mt-1" style={{ fontSize: "28px", lineHeight: 1 }}>Sara from Acme — Online</h3>
@@ -543,10 +543,10 @@ function Overview() {
 function ChatsView({ chats, active, onSelect }: { chats: Chat[]; active: Chat; onSelect: (id: string) => void }) {
   const [draft, setDraft] = useState("");
   return (
-    <div className="flex-1 flex min-h-0">
+    <div className="flex-1 flex min-h-0 flex-col lg:flex-row">
       {/* Chat list */}
-      <div className="w-80 border-r-2 border-[#2A323A] bg-[#151A1E] overflow-y-auto text-neutral-100">
-        <div className="px-4 py-3 border-b-2 border-[#2A323A] flex gap-2 font-mono-tech uppercase text-[10px]">
+      <div className="w-full lg:w-80 border-b-2 lg:border-b-0 lg:border-r-2 border-[#2A323A] bg-[#151A1E] overflow-y-auto text-neutral-100">
+        <div className="px-4 py-2 border-b-2 border-[#2A323A] flex gap-2 font-mono-tech uppercase text-[10px]">
           <button className="px-2 py-1 bg-[#0F1317] text-[#25D366] border border-[#2A323A]">All</button>
           <button className="px-2 py-1 hover:bg-white/5">Bot</button>
           <button className="px-2 py-1 hover:bg-white/5">Human</button>
@@ -557,7 +557,7 @@ function ChatsView({ chats, active, onSelect }: { chats: Chat[]; active: Chat; o
             <li key={c.id}>
               <button
                 onClick={() => onSelect(c.id)}
-                className={`w-full text-left px-4 py-3 border-b border-[#2A323A] flex items-center gap-3 ${
+                className={`w-full text-left px-4 py-2.5 border-b border-[#2A323A] flex items-center gap-3 ${
                   c.id === active.id ? "bg-[#25D366] text-black" : "hover:bg-white/5"
                 }`}
               >
@@ -615,7 +615,7 @@ function ChatsView({ chats, active, onSelect }: { chats: Chat[]; active: Chat; o
 
         <form
           onSubmit={(e) => { e.preventDefault(); setDraft(""); }}
-          className="border-t-2 border-[#2A323A] bg-[#0F1317] p-3 flex items-center gap-2"
+          className="border-t-2 border-[#2A323A] bg-[#0F1317] p-2.5 md:p-3 flex items-center gap-2"
         >
           <input
             value={draft}
