@@ -90,7 +90,7 @@ function Dashboard() {
     <div className="min-h-screen bg-[#0B0F12] text-neutral-100 flex">
       {/* Sidebar */}
       <aside className="w-64 bg-black text-white flex flex-col border-r-2 border-black">
-        <div className="px-5 py-5 border-b border-white/15 flex items-center justify-between">
+        <div className="px-5 py-4 border-b-2 border-[#2A323A] flex items-center justify-between">
           <Link to="/" className="font-display text-lg">WABOT/01</Link>
           <span className="font-mono-tech text-[10px] text-[#25D366] uppercase">● Live</span>
         </div>
