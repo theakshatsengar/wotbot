@@ -90,7 +90,7 @@ function Dashboard() {
     <div className="min-h-screen bg-[#0B0F12] text-neutral-100 flex">
       {/* Sidebar */}
       <aside className="w-64 bg-black text-white flex flex-col border-r-2 border-black">
-        <div className="px-5 py-4 border-b-2 border-[#2A323A] flex items-center justify-between">
+        <div className="min-h-[80px] px-5 py-4 border-b-2 border-[#2A323A] flex items-center justify-between">
           <Link to="/" className="font-display text-lg">WABOT/01</Link>
           <span className="font-mono-tech text-[10px] text-[#25D366] uppercase">● Live</span>
         </div>
@@ -116,7 +116,7 @@ function Dashboard() {
 
       {/* Main */}
       <main className="flex-1 flex flex-col min-w-0">
-        <header className="border-b-2 border-[#2A323A] bg-[#12171C] px-6 py-4 flex items-center justify-between text-neutral-100">
+        <header className="min-h-[80px] border-b-2 border-[#2A323A] bg-[#12171C] px-6 py-4 flex items-center justify-between text-neutral-100">
           <div>
             <div className="font-mono-tech uppercase text-[11px] opacity-70">[ {HEADERS[tab].kicker} ]</div>
             <h1 className="font-display text-2xl uppercase mt-0.5">{HEADERS[tab].title}</h1>
