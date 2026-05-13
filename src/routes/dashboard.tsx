@@ -87,7 +87,7 @@ function Dashboard() {
   const active = CHATS.find((c) => c.id === activeId)!;
 
   return (
-    <div className="min-h-screen bg-[#25D366] text-black flex">
+    <div className="min-h-screen bg-neutral-100 text-black flex">
       {/* Sidebar */}
       <aside className="w-64 bg-black text-white flex flex-col border-r-2 border-black">
         <div className="px-5 py-5 border-b border-white/15 flex items-center justify-between">
@@ -104,7 +104,7 @@ function Dashboard() {
         </nav>
         <div className="p-3 border-t border-white/15">
           <div className="flex items-center gap-3 px-2 py-2">
-            <div className="w-8 h-8 rounded-full bg-[#25D366] border-2 border-white flex items-center justify-center font-display text-black text-sm">A</div>
+            <div className="w-8 h-8 rounded-full bg-neutral-200 border-2 border-white flex items-center justify-center font-display text-black text-sm">A</div>
             <div className="flex-1 min-w-0">
               <div className="text-xs font-bold truncate">Acme Studio</div>
               <div className="font-mono-tech text-[10px] uppercase opacity-60">Operator Plan</div>
@@ -116,7 +116,7 @@ function Dashboard() {
 
       {/* Main */}
       <main className="flex-1 flex flex-col min-w-0">
-        <header className="border-b-2 border-black bg-[#25D366] px-6 py-4 flex items-center justify-between">
+        <header className="border-b-2 border-black bg-neutral-100 px-6 py-4 flex items-center justify-between">
           <div>
             <div className="font-mono-tech uppercase text-[11px] opacity-70">[ {HEADERS[tab].kicker} ]</div>
             <h1 className="font-display text-2xl uppercase mt-0.5">{HEADERS[tab].title}</h1>
@@ -153,7 +153,7 @@ const HEADERS: Record<string, { kicker: string; title: string }> = {
 };
 
 function Section({ children }: { children: React.ReactNode }) {
-  return <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-[#25D366]">{children}</div>;
+  return <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-neutral-100">{children}</div>;
 }
 
 function Card({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) {
@@ -178,7 +178,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 }
 
 const inputCls =
-  "w-full bg-white border-2 border-black px-3 py-2 text-sm outline-none focus:bg-[#25D366]/20 placeholder:text-black/40";
+  "w-full bg-white border-2 border-black px-3 py-2 text-sm outline-none focus:bg-black/5 placeholder:text-black/40";
 
 /* ────── Bot Training ────── */
 function Training() {
@@ -210,7 +210,7 @@ function Training() {
             <Field label="Greeting Message">
               <textarea rows={3} className={inputCls} value={greeting} onChange={(e) => setGreeting(e.target.value)} />
             </Field>
-            <button className="bg-black text-white font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-2 border-2 border-black hover:bg-[#25D366] hover:text-black">
+            <button className="bg-black text-white font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-2 border-2 border-black hover:bg-white hover:text-black">
               <Save size={14} /> Save Identity
             </button>
           </div>
@@ -226,7 +226,7 @@ function Training() {
             ))}
           </ul>
           <button onClick={() => setDocs([...docs, `new-doc-${docs.length + 1}.pdf`])}
-            className="bg-[#25D366] font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-2 border-2 border-black hover:bg-black hover:text-[#25D366]">
+            className="bg-neutral-200 font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-2 border-2 border-black hover:bg-black hover:text-white">
             <Plus size={14} /> Upload File
           </button>
         </Card>
@@ -234,7 +234,7 @@ function Training() {
 
       <Card title="Trained FAQs" action={
         <button onClick={() => setFaqs([...faqs, { q: "New question", a: "New answer" }])}
-          className="font-mono-tech uppercase text-[10px] px-3 py-1.5 border-2 border-black hover:bg-black hover:text-[#25D366] inline-flex items-center gap-1">
+          className="font-mono-tech uppercase text-[10px] px-3 py-1.5 border-2 border-black hover:bg-black hover:text-white inline-flex items-center gap-1">
           <Plus size={12} /> Add
         </button>
       }>
@@ -269,7 +269,7 @@ function Automations() {
   return (
     <Section>
       <Card title="Active Flows" action={
-        <button className="font-mono-tech uppercase text-[10px] px-3 py-1.5 border-2 border-black hover:bg-black hover:text-[#25D366] inline-flex items-center gap-1">
+        <button className="font-mono-tech uppercase text-[10px] px-3 py-1.5 border-2 border-black hover:bg-black hover:text-white inline-flex items-center gap-1">
           <Plus size={12} /> New Flow
         </button>
       }>
@@ -278,14 +278,14 @@ function Automations() {
             <div key={f.id} className="p-5 flex items-start gap-4">
               <button
                 onClick={() => setFlows(flows.map((x) => x.id === f.id ? { ...x, on: !x.on } : x))}
-                className={`shrink-0 w-12 h-12 border-2 border-black flex items-center justify-center ${f.on ? "bg-[#25D366]" : "bg-white"}`}
+                className={`shrink-0 w-12 h-12 border-2 border-black flex items-center justify-center ${f.on ? "bg-neutral-200" : "bg-white"}`}
               >
                 <Power size={16} className={f.on ? "text-black" : "text-black/30"} />
               </button>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2">
                   <h4 className="font-display uppercase text-sm">{f.name}</h4>
-                  <span className={`font-mono-tech uppercase text-[10px] px-2 py-0.5 border border-black ${f.on ? "bg-[#25D366]" : "bg-white opacity-60"}`}>
+                  <span className={`font-mono-tech uppercase text-[10px] px-2 py-0.5 border border-black ${f.on ? "bg-neutral-200" : "bg-white opacity-60"}`}>
                     {f.on ? "Live" : "Paused"}
                   </span>
                 </div>
@@ -327,7 +327,7 @@ function Contacts() {
           <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search by name or phone…"
             className="bg-transparent outline-none font-mono-tech text-xs uppercase placeholder:text-black/40 flex-1" />
         </div>
-        <button className="bg-black text-white font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-2 border-2 border-black hover:bg-[#25D366] hover:text-black">
+        <button className="bg-black text-white font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-2 border-2 border-black hover:bg-white hover:text-black">
           <Plus size={14} /> Add Contact
         </button>
       </div>
@@ -347,15 +347,15 @@ function Contacts() {
           </thead>
           <tbody>
             {filtered.map((c) => (
-              <tr key={c.id} className="border-t border-black/10 hover:bg-[#25D366]/20">
+              <tr key={c.id} className="border-t border-black/10 hover:bg-black/5">
                 <td className="px-4 py-3 font-bold flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-full bg-[#25D366] border-2 border-black flex items-center justify-center font-display text-xs">{c.name[0]}</div>
+                  <div className="w-7 h-7 rounded-full bg-neutral-200 border-2 border-black flex items-center justify-center font-display text-xs">{c.name[0]}</div>
                   {c.name}
                 </td>
                 <td className="px-4 py-3 font-mono-tech text-xs">{c.phone}</td>
                 <td className="px-4 py-3">
                   <span className={`font-mono-tech uppercase text-[10px] px-2 py-0.5 border-2 border-black ${
-                    c.status === "Customer" ? "bg-[#25D366]" : c.status === "Lead" ? "bg-white" : "bg-black text-white"
+                    c.status === "Customer" ? "bg-neutral-200" : c.status === "Lead" ? "bg-white" : "bg-black text-white"
                   }`}>{c.status}</span>
                 </td>
                 <td className="px-4 py-3">
@@ -422,7 +422,7 @@ function SettingsView() {
               <label key={k} className="flex items-center justify-between border-2 border-black px-3 py-2.5">
                 <span className="font-mono-tech uppercase text-[11px]">{label}</span>
                 <button onClick={() => setNotif({ ...notif, [k]: !notif[k] })}
-                  className={`w-12 h-6 border-2 border-black relative ${notif[k] ? "bg-[#25D366]" : "bg-white"}`}>
+                  className={`w-12 h-6 border-2 border-black relative ${notif[k] ? "bg-neutral-200" : "bg-white"}`}>
                   <span className={`absolute top-0 ${notif[k] ? "right-0" : "left-0"} w-5 h-[18px] bg-black transition-all`} />
                 </button>
               </label>
@@ -434,9 +434,9 @@ function SettingsView() {
           <div className="font-mono-tech text-[11px] uppercase opacity-60">Current Plan</div>
           <div className="font-display text-2xl uppercase mt-1">Operator — $49/mo</div>
           <p className="font-mono-tech text-[11px] uppercase mt-3 opacity-70">Renews May 28, 2026 • 247 / 5,000 conversations used</p>
-          <div className="w-full h-2 bg-black/10 border border-black mt-2"><div className="h-full bg-[#25D366]" style={{ width: "5%" }} /></div>
+          <div className="w-full h-2 bg-black/10 border border-black mt-2"><div className="h-full bg-black" style={{ width: "5%" }} /></div>
           <div className="flex gap-2 mt-4">
-            <button className="bg-black text-white font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full border-2 border-black hover:bg-[#25D366] hover:text-black">Upgrade</button>
+            <button className="bg-black text-white font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full border-2 border-black hover:bg-white hover:text-black">Upgrade</button>
             <button className="font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full border-2 border-black hover:bg-black hover:text-white">Manage Billing</button>
           </div>
         </Card>
@@ -458,13 +458,13 @@ function SideBtn({ icon: Icon, label, active, badge, onClick }: { icon: any; lab
     <button
       onClick={onClick}
       className={`w-full flex items-center gap-3 px-3 py-2.5 rounded font-mono-tech uppercase text-[11px] transition-colors ${
-        active ? "bg-[#25D366] text-black" : "text-white hover:bg-white/10"
+        active ? "bg-white text-black" : "text-white hover:bg-white/10"
       }`}
     >
       <Icon size={14} />
       <span className="flex-1 text-left">{label}</span>
       {badge ? (
-        <span className={`text-[10px] px-1.5 py-0.5 ${active ? "bg-black text-[#25D366]" : "bg-[#25D366] text-black"}`}>{badge}</span>
+        <span className={`text-[10px] px-1.5 py-0.5 ${active ? "bg-black text-white" : "bg-white text-black"}`}>{badge}</span>
       ) : null}
     </button>
   );
@@ -472,7 +472,7 @@ function SideBtn({ icon: Icon, label, active, badge, onClick }: { icon: any; lab
 
 function Overview() {
   return (
-    <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-[#25D366]">
+    <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-neutral-100">
       {/* Stats grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-2 border-black bg-white">
         {STATS.map((s, i) => (
@@ -495,7 +495,7 @@ function Overview() {
           <div className="p-5">
             <div className="flex items-end gap-2 h-40">
               {[40, 65, 30, 80, 55, 90, 70, 45, 85, 60, 95, 75].map((h, i) => (
-                <div key={i} className="flex-1 bg-black hover:bg-[#25D366] transition-colors" style={{ height: `${h}%` }} />
+                <div key={i} className="flex-1 bg-black hover:bg-neutral-400 transition-colors" style={{ height: `${h}%` }} />
               ))}
             </div>
             <div className="flex justify-between mt-3 font-mono-tech text-[10px] uppercase opacity-60">
@@ -513,7 +513,7 @@ function Overview() {
           <ul>
             {CHATS.slice(0, 4).map((c, i) => (
               <li key={c.id} className={`px-5 py-3 flex items-center gap-3 ${i > 0 ? "border-t border-black/10" : ""}`}>
-                <div className="w-8 h-8 rounded-full bg-[#25D366] border-2 border-black flex items-center justify-center font-display text-xs">{c.name[0]}</div>
+                <div className="w-8 h-8 rounded-full bg-neutral-200 border-2 border-black flex items-center justify-center font-display text-xs">{c.name[0]}</div>
                 <div className="flex-1 min-w-0">
                   <div className="text-xs font-bold truncate">{c.name}</div>
                   <div className="font-mono-tech text-[10px] uppercase opacity-60">{c.status}</div>
@@ -532,7 +532,7 @@ function Overview() {
           <h3 className="font-display uppercase mt-1" style={{ fontSize: "28px", lineHeight: 1 }}>Sara from Acme — Online</h3>
           <p className="font-mono-tech uppercase text-[10px] opacity-60 mt-2">Trained on 142 products • 38 FAQs • Tone: friendly</p>
         </div>
-        <button className="bg-[#25D366] text-black font-mono-tech uppercase text-xs px-5 py-3 rounded-full hover:bg-white border-2 border-[#25D366]">
+        <button className="bg-white text-black font-mono-tech uppercase text-xs px-5 py-3 rounded-full hover:bg-neutral-200 border-2 border-black">
           Retrain Bot →
         </button>
       </div>
@@ -558,10 +558,10 @@ function ChatsView({ chats, active, onSelect }: { chats: Chat[]; active: Chat; o
               <button
                 onClick={() => onSelect(c.id)}
                 className={`w-full text-left px-4 py-3 border-b border-black/10 flex items-center gap-3 ${
-                  c.id === active.id ? "bg-[#25D366]" : "hover:bg-black/5"
+                  c.id === active.id ? "bg-neutral-200" : "hover:bg-black/5"
                 }`}
               >
-                <div className="w-9 h-9 rounded-full bg-[#25D366] border-2 border-black flex items-center justify-center font-display text-sm shrink-0">{c.name[0]}</div>
+                <div className="w-9 h-9 rounded-full bg-neutral-200 border-2 border-black flex items-center justify-center font-display text-sm shrink-0">{c.name[0]}</div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-sm font-bold truncate">{c.name}</span>
@@ -585,7 +585,7 @@ function ChatsView({ chats, active, onSelect }: { chats: Chat[]; active: Chat; o
       <div className="flex-1 flex flex-col bg-[#0B141A] min-w-0">
         <div className="px-5 py-3 border-b-2 border-black bg-black text-white flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-[#25D366] border-2 border-white flex items-center justify-center font-display text-black text-sm">{active.name[0]}</div>
+            <div className="w-9 h-9 rounded-full bg-neutral-200 border-2 border-white flex items-center justify-center font-display text-black text-sm">{active.name[0]}</div>
             <div>
               <div className="text-sm font-bold">{active.name}</div>
               <div className="font-mono-tech text-[10px] uppercase text-[#25D366]">● {active.status === "human" ? "Awaiting You" : active.status === "bot" ? "Bot Handling" : "Closed"}</div>
@@ -601,7 +601,7 @@ function ChatsView({ chats, active, onSelect }: { chats: Chat[]; active: Chat; o
             const isBot = m.from === "bot";
             return (
               <div key={i} className={`flex ${isBot ? "justify-start" : "justify-end"}`}>
-                <div className={`max-w-[70%] px-3 py-2 border-2 border-black ${isBot ? "bg-white" : "bg-[#DCF8C6]"}`}>
+                <div className={`max-w-[70%] px-3 py-2 border-2 border-black ${isBot ? "bg-white" : "bg-neutral-200"}`}>
                   <p className="text-sm text-black leading-snug">{m.text}</p>
                   <div className="flex items-center justify-end gap-1 mt-1 text-[10px] text-black/50 font-mono-tech">
                     {m.time}
@@ -621,9 +621,9 @@ function ChatsView({ chats, active, onSelect }: { chats: Chat[]; active: Chat; o
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
             placeholder="Type a message…"
-            className="flex-1 bg-white border-2 border-[#25D366] px-3 py-2.5 text-sm outline-none placeholder:text-black/40"
+            className="flex-1 bg-white border-2 border-black px-3 py-2.5 text-sm outline-none placeholder:text-black/40"
           />
-          <button type="submit" className="bg-[#25D366] text-black p-3 border-2 border-[#25D366] hover:bg-white">
+          <button type="submit" className="bg-white text-black p-3 border-2 border-black hover:bg-neutral-200">
             <Send size={16} />
           </button>
         </form>
@@ -646,7 +646,7 @@ function ChatsView({ chats, active, onSelect }: { chats: Chat[]; active: Chat; o
           </div>
           <div>
             <div className="font-mono-tech text-[10px] uppercase opacity-60">Intent</div>
-            <div className="inline-block bg-[#25D366] border-2 border-black px-2 py-0.5 font-mono-tech text-[10px] uppercase">High</div>
+            <div className="inline-block bg-neutral-200 border-2 border-black px-2 py-0.5 font-mono-tech text-[10px] uppercase">High</div>
           </div>
           <div>
             <div className="font-mono-tech text-[10px] uppercase opacity-60">Tags</div>
@@ -658,7 +658,7 @@ function ChatsView({ chats, active, onSelect }: { chats: Chat[]; active: Chat; o
           </div>
         </div>
         <div className="mt-auto p-5 border-t-2 border-black">
-          <button className="w-full bg-black text-white font-mono-tech uppercase text-xs px-4 py-3 rounded-full hover:bg-[#25D366] hover:text-black border-2 border-black">
+          <button className="w-full bg-black text-white font-mono-tech uppercase text-xs px-4 py-3 rounded-full hover:bg-white hover:text-black border-2 border-black">
             Mark As Won →
           </button>
         </div>
