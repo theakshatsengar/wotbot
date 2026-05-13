@@ -87,12 +87,12 @@ function Dashboard() {
   const active = CHATS.find((c) => c.id === activeId)!;
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-black flex">
+    <div className="min-h-screen bg-[#0B0F12] text-neutral-100 flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-[#25D366] text-black flex flex-col border-r-2 border-black">
-        <div className="px-5 py-5 border-b border-black/20 flex items-center justify-between">
+      <aside className="w-64 bg-black text-white flex flex-col border-r-2 border-black">
+        <div className="px-5 py-5 border-b border-white/15 flex items-center justify-between">
           <Link to="/" className="font-display text-lg">WABOT/01</Link>
-          <span className="font-mono-tech text-[10px] text-black uppercase">● Live</span>
+          <span className="font-mono-tech text-[10px] text-[#25D366] uppercase">● Live</span>
         </div>
         <nav className="flex-1 p-3 space-y-1">
           <SideBtn icon={BarChart3} label="Overview" active={tab === "overview"} onClick={() => setTab("overview")} />
@@ -102,7 +102,7 @@ function Dashboard() {
           <SideBtn icon={Users} label="Contacts" active={tab === "contacts"} onClick={() => setTab("contacts")} />
           <SideBtn icon={Settings} label="Settings" active={tab === "settings"} onClick={() => setTab("settings")} />
         </nav>
-        <div className="p-3 border-t border-black/20">
+        <div className="p-3 border-t border-white/15">
           <div className="flex items-center gap-3 px-2 py-2">
             <div className="w-8 h-8 rounded-full bg-[#25D366] border-2 border-white flex items-center justify-center font-display text-black text-sm">A</div>
             <div className="flex-1 min-w-0">
@@ -116,17 +116,17 @@ function Dashboard() {
 
       {/* Main */}
       <main className="flex-1 flex flex-col min-w-0">
-        <header className="border-b-2 border-black bg-neutral-900 px-6 py-4 flex items-center justify-between text-white">
+        <header className="border-b-2 border-[#2A323A] bg-[#12171C] px-6 py-4 flex items-center justify-between text-neutral-100">
           <div>
             <div className="font-mono-tech uppercase text-[11px] opacity-70">[ {HEADERS[tab].kicker} ]</div>
             <h1 className="font-display text-2xl uppercase mt-0.5">{HEADERS[tab].title}</h1>
           </div>
           <div className="flex items-center gap-3">
-            <div className="hidden md:flex items-center gap-2 bg-white border-2 border-black px-3 py-2 text-black">
+            <div className="hidden md:flex items-center gap-2 bg-[#11161B] border-2 border-[#2A323A] px-3 py-2 text-neutral-100">
               <Search size={14} />
-              <input placeholder="Search chats…" className="bg-transparent outline-none font-mono-tech text-xs uppercase placeholder:text-black/40 w-48" />
+              <input placeholder="Search chats…" className="bg-transparent outline-none font-mono-tech text-xs uppercase text-white placeholder:text-white/40 w-48" />
             </div>
-            <button className="bg-black text-white font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-2 hover:bg-white hover:text-black border-2 border-black transition-colors">
+            <button className="bg-[#11161B] text-white font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-2 hover:bg-[#25D366] hover:text-black border-2 border-[#2A323A] hover:border-[#25D366] transition-colors">
               <Plus size={14} /> New Bot
             </button>
           </div>
@@ -153,13 +153,13 @@ const HEADERS: Record<string, { kicker: string; title: string }> = {
 };
 
 function Section({ children }: { children: React.ReactNode }) {
-  return <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-neutral-950">{children}</div>;
+  return <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-[#0B0F12]">{children}</div>;
 }
 
 function Card({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className="bg-white border-2 border-black">
-      <div className="px-5 py-3 border-b-2 border-black flex items-center justify-between">
+    <div className="bg-[#151A1E] border-2 border-[#2A323A] text-neutral-100">
+      <div className="px-5 py-3 border-b-2 border-[#2A323A] flex items-center justify-between">
         <h3 className="font-display uppercase text-sm">{title}</h3>
         {action}
       </div>
@@ -171,14 +171,14 @@ function Card({ title, action, children }: { title: string; action?: React.React
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="font-mono-tech uppercase text-[10px] opacity-60">{label}</span>
+      <span className="font-mono-tech uppercase text-[10px] text-white/60">{label}</span>
       <div className="mt-1">{children}</div>
     </label>
   );
 }
 
 const inputCls =
-  "w-full bg-white border-2 border-black px-3 py-2 text-sm outline-none focus:bg-[#25D366]/20 placeholder:text-black/40";
+  "w-full bg-[#0F1317] border-2 border-[#2A323A] px-3 py-2 text-sm text-neutral-100 outline-none focus:bg-[#12171C] placeholder:text-neutral-500";
 
 /* ────── Bot Training ────── */
 function Training() {
@@ -201,7 +201,7 @@ function Training() {
               <div className="flex gap-2 flex-wrap">
                 {["Friendly", "Professional", "Playful", "Direct"].map((t) => (
                   <button key={t} onClick={() => setTone(t)}
-                    className={`font-mono-tech uppercase text-[10px] px-3 py-1.5 border-2 border-black ${tone === t ? "bg-black text-[#25D366]" : "bg-white hover:bg-black/5"}`}>
+                    className={`font-mono-tech uppercase text-[10px] px-3 py-1.5 border-2 border-[#2A323A] ${tone === t ? "bg-[#25D366] text-black" : "bg-[#11161B] text-white hover:bg-white/5"}`}>
                     {t}
                   </button>
                 ))}
@@ -210,7 +210,7 @@ function Training() {
             <Field label="Greeting Message">
               <textarea rows={3} className={inputCls} value={greeting} onChange={(e) => setGreeting(e.target.value)} />
             </Field>
-            <button className="bg-black text-white font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-2 border-2 border-black hover:bg-[#25D366] hover:text-black">
+            <button className="bg-[#11161B] text-white font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-2 border-2 border-[#2A323A] hover:bg-[#25D366] hover:text-black hover:border-[#25D366]">
               <Save size={14} /> Save Identity
             </button>
           </div>
@@ -219,14 +219,14 @@ function Training() {
         <Card title="Knowledge Base" action={<span className="font-mono-tech text-[10px] uppercase opacity-60">{docs.length} files</span>}>
           <ul className="space-y-2 mb-4">
             {docs.map((d, i) => (
-              <li key={d} className="flex items-center justify-between border-2 border-black px-3 py-2">
+              <li key={d} className="flex items-center justify-between border-2 border-[#2A323A] px-3 py-2">
                 <span className="font-mono-tech text-xs">{d}</span>
                 <button onClick={() => setDocs(docs.filter((_, j) => j !== i))} className="opacity-60 hover:opacity-100"><Trash2 size={14} /></button>
               </li>
             ))}
           </ul>
           <button onClick={() => setDocs([...docs, `new-doc-${docs.length + 1}.pdf`])}
-            className="bg-[#25D366] font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-2 border-2 border-black hover:bg-black hover:text-[#25D366]">
+            className="bg-[#25D366] text-black font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-2 border-2 border-[#25D366] hover:bg-[#1FB859]">
             <Plus size={14} /> Upload File
           </button>
         </Card>
@@ -234,13 +234,13 @@ function Training() {
 
       <Card title="Trained FAQs" action={
         <button onClick={() => setFaqs([...faqs, { q: "New question", a: "New answer" }])}
-          className="font-mono-tech uppercase text-[10px] px-3 py-1.5 border-2 border-black hover:bg-black hover:text-[#25D366] inline-flex items-center gap-1">
+          className="font-mono-tech uppercase text-[10px] px-3 py-1.5 border-2 border-[#2A323A] hover:bg-[#25D366] hover:text-black hover:border-[#25D366] inline-flex items-center gap-1">
           <Plus size={12} /> Add
         </button>
       }>
         <div className="space-y-3">
           {faqs.map((f, i) => (
-            <div key={i} className="border-2 border-black p-3 space-y-2">
+            <div key={i} className="border-2 border-[#2A323A] p-3 space-y-2">
               <input className={inputCls} value={f.q} onChange={(e) => { const n = [...faqs]; n[i].q = e.target.value; setFaqs(n); }} />
               <textarea rows={2} className={inputCls} value={f.a} onChange={(e) => { const n = [...faqs]; n[i].a = e.target.value; setFaqs(n); }} />
               <button onClick={() => setFaqs(faqs.filter((_, j) => j !== i))}
@@ -269,23 +269,23 @@ function Automations() {
   return (
     <Section>
       <Card title="Active Flows" action={
-        <button className="font-mono-tech uppercase text-[10px] px-3 py-1.5 border-2 border-black hover:bg-black hover:text-[#25D366] inline-flex items-center gap-1">
+        <button className="font-mono-tech uppercase text-[10px] px-3 py-1.5 border-2 border-[#2A323A] hover:bg-[#25D366] hover:text-black hover:border-[#25D366] inline-flex items-center gap-1">
           <Plus size={12} /> New Flow
         </button>
       }>
-        <div className="divide-y-2 divide-black -m-5">
+        <div className="divide-y-2 divide-[#2A323A] -m-5">
           {flows.map((f) => (
             <div key={f.id} className="p-5 flex items-start gap-4">
               <button
                 onClick={() => setFlows(flows.map((x) => x.id === f.id ? { ...x, on: !x.on } : x))}
-                className={`shrink-0 w-12 h-12 border-2 border-black flex items-center justify-center ${f.on ? "bg-[#25D366]" : "bg-white"}`}
+                className={`shrink-0 w-12 h-12 border-2 border-[#2A323A] flex items-center justify-center ${f.on ? "bg-[#25D366]" : "bg-[#11161B]"}`}
               >
-                <Power size={16} className={f.on ? "text-black" : "text-black/30"} />
+                <Power size={16} className={f.on ? "text-black" : "text-white/40"} />
               </button>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2">
                   <h4 className="font-display uppercase text-sm">{f.name}</h4>
-                  <span className={`font-mono-tech uppercase text-[10px] px-2 py-0.5 border border-black ${f.on ? "bg-[#25D366]" : "bg-white opacity-60"}`}>
+                  <span className={`font-mono-tech uppercase text-[10px] px-2 py-0.5 border border-[#2A323A] ${f.on ? "bg-[#25D366] text-black" : "bg-[#11161B] text-white/60"}`}>
                     {f.on ? "Live" : "Paused"}
                   </span>
                 </div>
@@ -322,19 +322,19 @@ function Contacts() {
   return (
     <Section>
       <div className="flex items-center gap-3">
-        <div className="flex-1 flex items-center gap-2 bg-white border-2 border-black px-3 py-2">
+        <div className="flex-1 flex items-center gap-2 bg-[#11161B] border-2 border-[#2A323A] px-3 py-2 text-neutral-100">
           <Search size={14} />
           <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search by name or phone…"
-            className="bg-transparent outline-none font-mono-tech text-xs uppercase placeholder:text-black/40 flex-1" />
+            className="bg-transparent outline-none font-mono-tech text-xs uppercase text-white placeholder:text-white/40 flex-1" />
         </div>
-        <button className="bg-black text-white font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-2 border-2 border-black hover:bg-[#25D366] hover:text-black">
+        <button className="bg-[#11161B] text-white font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-2 border-2 border-[#2A323A] hover:bg-[#25D366] hover:text-black hover:border-[#25D366]">
           <Plus size={14} /> Add Contact
         </button>
       </div>
 
-      <div className="bg-white border-2 border-black overflow-x-auto">
+      <div className="bg-[#151A1E] border-2 border-[#2A323A] overflow-x-auto text-neutral-100">
         <table className="w-full text-sm">
-          <thead className="bg-black text-white font-mono-tech uppercase text-[10px]">
+          <thead className="bg-[#0F1317] text-neutral-100 font-mono-tech uppercase text-[10px]">
             <tr>
               <th className="text-left px-4 py-3">Name</th>
               <th className="text-left px-4 py-3">Phone</th>
@@ -347,21 +347,21 @@ function Contacts() {
           </thead>
           <tbody>
             {filtered.map((c) => (
-              <tr key={c.id} className="border-t border-black/10 hover:bg-[#25D366]/20">
+              <tr key={c.id} className="border-t border-[#2A323A] hover:bg-[#25D366]/20">
                 <td className="px-4 py-3 font-bold flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-full bg-[#25D366] border-2 border-black flex items-center justify-center font-display text-xs">{c.name[0]}</div>
+                  <div className="w-7 h-7 rounded-full bg-[#25D366] border-2 border-[#2A323A] flex items-center justify-center font-display text-xs">{c.name[0]}</div>
                   {c.name}
                 </td>
                 <td className="px-4 py-3 font-mono-tech text-xs">{c.phone}</td>
                 <td className="px-4 py-3">
-                  <span className={`font-mono-tech uppercase text-[10px] px-2 py-0.5 border-2 border-black ${
-                    c.status === "Customer" ? "bg-[#25D366]" : c.status === "Lead" ? "bg-white" : "bg-black text-white"
+                  <span className={`font-mono-tech uppercase text-[10px] px-2 py-0.5 border-2 border-[#2A323A] ${
+                    c.status === "Customer" ? "bg-[#25D366] text-black" : c.status === "Lead" ? "bg-[#11161B] text-white" : "bg-[#0F1317] text-white"
                   }`}>{c.status}</span>
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex gap-1 flex-wrap">
                     {c.tags.map((t) => (
-                      <span key={t} className="font-mono-tech text-[10px] uppercase px-1.5 py-0.5 border border-black inline-flex items-center gap-1">
+                      <span key={t} className="font-mono-tech text-[10px] uppercase px-1.5 py-0.5 border border-[#2A323A] inline-flex items-center gap-1">
                         <Tag size={9} />{t}
                       </span>
                     ))}
@@ -419,11 +419,11 @@ function SettingsView() {
               ["handoff", "Notify me on bot handoffs"],
               ["daily", "Send daily summary email"],
             ] as const).map(([k, label]) => (
-              <label key={k} className="flex items-center justify-between border-2 border-black px-3 py-2.5">
+              <label key={k} className="flex items-center justify-between border-2 border-[#2A323A] px-3 py-2.5">
                 <span className="font-mono-tech uppercase text-[11px]">{label}</span>
                 <button onClick={() => setNotif({ ...notif, [k]: !notif[k] })}
-                  className={`w-12 h-6 border-2 border-black relative ${notif[k] ? "bg-[#25D366]" : "bg-white"}`}>
-                  <span className={`absolute top-0 ${notif[k] ? "right-0" : "left-0"} w-5 h-[18px] bg-black transition-all`} />
+                  className={`w-12 h-6 border-2 border-[#2A323A] relative ${notif[k] ? "bg-[#25D366]" : "bg-[#11161B]"}`}>
+                  <span className={`absolute top-0 ${notif[k] ? "right-0" : "left-0"} w-5 h-[18px] bg-white transition-all`} />
                 </button>
               </label>
             ))}
@@ -431,21 +431,21 @@ function SettingsView() {
         </Card>
 
         <Card title="Plan & Billing">
-          <div className="font-mono-tech text-[11px] uppercase opacity-60">Current Plan</div>
+          <div className="font-mono-tech text-[11px] uppercase text-white/60">Current Plan</div>
           <div className="font-display text-2xl uppercase mt-1">Operator — $49/mo</div>
-          <p className="font-mono-tech text-[11px] uppercase mt-3 opacity-70">Renews May 28, 2026 • 247 / 5,000 conversations used</p>
-          <div className="w-full h-2 bg-black/10 border border-black mt-2"><div className="h-full bg-[#25D366]" style={{ width: "5%" }} /></div>
+          <p className="font-mono-tech text-[11px] uppercase mt-3 text-white/60">Renews May 28, 2026 • 247 / 5,000 conversations used</p>
+          <div className="w-full h-2 bg-white/10 border border-[#2A323A] mt-2"><div className="h-full bg-[#25D366]" style={{ width: "5%" }} /></div>
           <div className="flex gap-2 mt-4">
-            <button className="bg-black text-white font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full border-2 border-black hover:bg-[#25D366] hover:text-black">Upgrade</button>
-            <button className="font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full border-2 border-black hover:bg-black hover:text-white">Manage Billing</button>
+            <button className="bg-[#11161B] text-white font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full border-2 border-[#2A323A] hover:bg-[#25D366] hover:text-black hover:border-[#25D366]">Upgrade</button>
+            <button className="font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full border-2 border-[#2A323A] hover:bg-white/5 hover:text-white">Manage Billing</button>
           </div>
         </Card>
 
         <Card title="Danger Zone">
-          <p className="font-mono-tech text-[11px] uppercase opacity-70">These actions are permanent.</p>
+          <p className="font-mono-tech text-[11px] uppercase text-white/60">These actions are permanent.</p>
           <div className="flex gap-2 mt-4 flex-wrap">
-            <button className="font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full border-2 border-black hover:bg-black hover:text-white">Pause Bot</button>
-            <button className="font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full border-2 border-black bg-black text-white hover:bg-red-700 hover:border-red-700">Delete Workspace</button>
+            <button className="font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full border-2 border-[#2A323A] hover:bg-white/5 hover:text-white">Pause Bot</button>
+            <button className="font-mono-tech uppercase text-xs px-4 py-2.5 rounded-full border-2 border-[#2A323A] bg-[#11161B] text-white hover:bg-red-700 hover:border-red-700">Delete Workspace</button>
           </div>
         </Card>
       </div>
@@ -472,14 +472,14 @@ function SideBtn({ icon: Icon, label, active, badge, onClick }: { icon: any; lab
 
 function Overview() {
   return (
-    <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-neutral-950">
+    <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-[#0B0F12]">
       {/* Stats grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-2 border-black bg-white">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-2 border-[#2A323A] bg-[#151A1E]">
         {STATS.map((s, i) => (
-          <div key={s.label} className={`p-5 ${i > 0 ? "border-l-0 md:border-l-2 border-black" : ""} ${i >= 2 ? "border-t-2 md:border-t-0 border-black" : ""}`}>
+          <div key={s.label} className={`p-5 ${i > 0 ? "border-l-0 md:border-l-2 border-[#2A323A]" : ""} ${i >= 2 ? "border-t-2 md:border-t-0 border-[#2A323A]" : ""}`}>
             <div className="font-mono-tech uppercase text-[10px] opacity-60">{s.label}</div>
             <div className="font-display mt-2" style={{ fontSize: "32px", lineHeight: 1 }}>{s.value}</div>
-            <div className="font-mono-tech uppercase text-[10px] mt-2 text-black/70">▲ {s.delta}</div>
+            <div className="font-mono-tech uppercase text-[10px] mt-2 text-white/60">▲ {s.delta}</div>
           </div>
         ))}
       </div>
@@ -487,15 +487,15 @@ function Overview() {
       {/* Two-column area */}
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Activity */}
-        <div className="lg:col-span-2 bg-white border-2 border-black">
-          <div className="px-5 py-3 border-b-2 border-black flex items-center justify-between">
+        <div className="lg:col-span-2 bg-[#151A1E] border-2 border-[#2A323A]">
+          <div className="px-5 py-3 border-b-2 border-[#2A323A] flex items-center justify-between">
             <h3 className="font-display uppercase text-sm">Last 24 Hours</h3>
             <span className="font-mono-tech text-[10px] uppercase opacity-60">Live</span>
           </div>
           <div className="p-5">
             <div className="flex items-end gap-2 h-40">
               {[40, 65, 30, 80, 55, 90, 70, 45, 85, 60, 95, 75].map((h, i) => (
-                <div key={i} className="flex-1 bg-black hover:bg-[#25D366] transition-colors" style={{ height: `${h}%` }} />
+                <div key={i} className="flex-1 bg-[#2A323A] hover:bg-[#25D366] transition-colors" style={{ height: `${h}%` }} />
               ))}
             </div>
             <div className="flex justify-between mt-3 font-mono-tech text-[10px] uppercase opacity-60">
@@ -505,15 +505,15 @@ function Overview() {
         </div>
 
         {/* Recent leads */}
-        <div className="bg-white border-2 border-black">
-          <div className="px-5 py-3 border-b-2 border-black flex items-center justify-between">
+        <div className="bg-[#151A1E] border-2 border-[#2A323A]">
+          <div className="px-5 py-3 border-b-2 border-[#2A323A] flex items-center justify-between">
             <h3 className="font-display uppercase text-sm">Hot Leads</h3>
             <ArrowUpRight size={14} />
           </div>
           <ul>
             {CHATS.slice(0, 4).map((c, i) => (
-              <li key={c.id} className={`px-5 py-3 flex items-center gap-3 ${i > 0 ? "border-t border-black/10" : ""}`}>
-                <div className="w-8 h-8 rounded-full bg-[#25D366] border-2 border-black flex items-center justify-center font-display text-xs">{c.name[0]}</div>
+              <li key={c.id} className={`px-5 py-3 flex items-center gap-3 ${i > 0 ? "border-t border-white/10" : ""}`}>
+                <div className="w-8 h-8 rounded-full bg-[#25D366] border-2 border-[#2A323A] flex items-center justify-center font-display text-xs">{c.name[0]}</div>
                 <div className="flex-1 min-w-0">
                   <div className="text-xs font-bold truncate">{c.name}</div>
                   <div className="font-mono-tech text-[10px] uppercase opacity-60">{c.status}</div>
@@ -526,13 +526,13 @@ function Overview() {
       </div>
 
       {/* Bot status */}
-      <div className="bg-black text-white border-2 border-black p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="bg-[#11161B] text-neutral-100 border-2 border-[#2A323A] p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <div className="font-mono-tech uppercase text-[10px] text-[#25D366]">[ Bot Status ]</div>
           <h3 className="font-display uppercase mt-1" style={{ fontSize: "28px", lineHeight: 1 }}>Sara from Acme — Online</h3>
           <p className="font-mono-tech uppercase text-[10px] opacity-60 mt-2">Trained on 142 products • 38 FAQs • Tone: friendly</p>
         </div>
-        <button className="bg-[#25D366] text-black font-mono-tech uppercase text-xs px-5 py-3 rounded-full hover:bg-white border-2 border-[#25D366]">
+        <button className="bg-[#25D366] text-black font-mono-tech uppercase text-xs px-5 py-3 rounded-full hover:bg-[#1FB859] border-2 border-[#25D366]">
           Retrain Bot →
         </button>
       </div>
@@ -545,23 +545,23 @@ function ChatsView({ chats, active, onSelect }: { chats: Chat[]; active: Chat; o
   return (
     <div className="flex-1 flex min-h-0">
       {/* Chat list */}
-      <div className="w-80 border-r-2 border-black bg-white overflow-y-auto">
-        <div className="px-4 py-3 border-b-2 border-black flex gap-2 font-mono-tech uppercase text-[10px]">
-          <button className="px-2 py-1 bg-black text-[#25D366]">All</button>
-          <button className="px-2 py-1 hover:bg-black/10">Bot</button>
-          <button className="px-2 py-1 hover:bg-black/10">Human</button>
-          <button className="px-2 py-1 hover:bg-black/10">Closed</button>
+      <div className="w-80 border-r-2 border-[#2A323A] bg-[#151A1E] overflow-y-auto text-neutral-100">
+        <div className="px-4 py-3 border-b-2 border-[#2A323A] flex gap-2 font-mono-tech uppercase text-[10px]">
+          <button className="px-2 py-1 bg-[#0F1317] text-[#25D366] border border-[#2A323A]">All</button>
+          <button className="px-2 py-1 hover:bg-white/5">Bot</button>
+          <button className="px-2 py-1 hover:bg-white/5">Human</button>
+          <button className="px-2 py-1 hover:bg-white/5">Closed</button>
         </div>
         <ul>
           {chats.map((c) => (
             <li key={c.id}>
               <button
                 onClick={() => onSelect(c.id)}
-                className={`w-full text-left px-4 py-3 border-b border-black/10 flex items-center gap-3 ${
-                  c.id === active.id ? "bg-[#25D366]" : "hover:bg-black/5"
+                className={`w-full text-left px-4 py-3 border-b border-[#2A323A] flex items-center gap-3 ${
+                  c.id === active.id ? "bg-[#25D366] text-black" : "hover:bg-white/5"
                 }`}
               >
-                <div className="w-9 h-9 rounded-full bg-[#25D366] border-2 border-black flex items-center justify-center font-display text-sm shrink-0">{c.name[0]}</div>
+                <div className="w-9 h-9 rounded-full bg-[#25D366] border-2 border-[#2A323A] flex items-center justify-center font-display text-sm shrink-0">{c.name[0]}</div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-sm font-bold truncate">{c.name}</span>
@@ -583,7 +583,7 @@ function ChatsView({ chats, active, onSelect }: { chats: Chat[]; active: Chat; o
 
       {/* Conversation */}
       <div className="flex-1 flex flex-col bg-[#0B141A] min-w-0">
-        <div className="px-5 py-3 border-b-2 border-black bg-black text-white flex items-center justify-between">
+        <div className="px-5 py-3 border-b-2 border-[#2A323A] bg-[#0F1317] text-neutral-100 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-[#25D366] border-2 border-white flex items-center justify-center font-display text-black text-sm">{active.name[0]}</div>
             <div>
@@ -591,7 +591,7 @@ function ChatsView({ chats, active, onSelect }: { chats: Chat[]; active: Chat; o
               <div className="font-mono-tech text-[10px] uppercase text-[#25D366]">● {active.status === "human" ? "Awaiting You" : active.status === "bot" ? "Bot Handling" : "Closed"}</div>
             </div>
           </div>
-          <button className="font-mono-tech uppercase text-[10px] px-3 py-1.5 border border-white/40 rounded-full hover:bg-white hover:text-black">
+          <button className="font-mono-tech uppercase text-[10px] px-3 py-1.5 border border-white/30 rounded-full hover:bg-white/10">
             Take Over
           </button>
         </div>
@@ -601,9 +601,9 @@ function ChatsView({ chats, active, onSelect }: { chats: Chat[]; active: Chat; o
             const isBot = m.from === "bot";
             return (
               <div key={i} className={`flex ${isBot ? "justify-start" : "justify-end"}`}>
-                <div className={`max-w-[70%] px-3 py-2 border-2 border-black ${isBot ? "bg-white" : "bg-[#DCF8C6]"}`}>
-                  <p className="text-sm text-black leading-snug">{m.text}</p>
-                  <div className="flex items-center justify-end gap-1 mt-1 text-[10px] text-black/50 font-mono-tech">
+                <div className={`max-w-[70%] px-3 py-2 border-2 border-[#2A323A] ${isBot ? "bg-[#151A1E]" : "bg-[#25D366]"}`}>
+                  <p className={`text-sm ${isBot ? "text-neutral-100" : "text-black"} leading-snug`}>{m.text}</p>
+                  <div className={`flex items-center justify-end gap-1 mt-1 text-[10px] ${isBot ? "text-white/50" : "text-black/60"} font-mono-tech`}>
                     {m.time}
                     {!isBot && <CheckCheck size={12} className="text-[#25D366]" />}
                   </div>
@@ -615,23 +615,23 @@ function ChatsView({ chats, active, onSelect }: { chats: Chat[]; active: Chat; o
 
         <form
           onSubmit={(e) => { e.preventDefault(); setDraft(""); }}
-          className="border-t-2 border-black bg-black p-3 flex items-center gap-2"
+          className="border-t-2 border-[#2A323A] bg-[#0F1317] p-3 flex items-center gap-2"
         >
           <input
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
             placeholder="Type a message…"
-            className="flex-1 bg-white border-2 border-[#25D366] px-3 py-2.5 text-sm outline-none placeholder:text-black/40"
+            className="flex-1 bg-[#11161B] border-2 border-[#2A323A] px-3 py-2.5 text-sm text-white outline-none placeholder:text-white/40 focus:border-[#25D366]"
           />
-          <button type="submit" className="bg-[#25D366] text-black p-3 border-2 border-[#25D366] hover:bg-white">
+          <button type="submit" className="bg-[#25D366] text-black p-3 border-2 border-[#25D366] hover:bg-[#1FB859]">
             <Send size={16} />
           </button>
         </form>
       </div>
 
       {/* Right insight panel */}
-      <aside className="hidden xl:flex w-72 border-l-2 border-black bg-white flex-col">
-        <div className="px-5 py-3 border-b-2 border-black flex items-center justify-between">
+      <aside className="hidden xl:flex w-72 border-l-2 border-[#2A323A] bg-[#151A1E] text-neutral-100 flex-col">
+        <div className="px-5 py-3 border-b-2 border-[#2A323A] flex items-center justify-between">
           <h3 className="font-display uppercase text-sm">Lead Info</h3>
           <MessageCircle size={14} />
         </div>
@@ -646,19 +646,19 @@ function ChatsView({ chats, active, onSelect }: { chats: Chat[]; active: Chat; o
           </div>
           <div>
             <div className="font-mono-tech text-[10px] uppercase opacity-60">Intent</div>
-            <div className="inline-block bg-[#25D366] border-2 border-black px-2 py-0.5 font-mono-tech text-[10px] uppercase">High</div>
+            <div className="inline-block bg-[#25D366] border-2 border-[#2A323A] px-2 py-0.5 font-mono-tech text-[10px] uppercase text-black">High</div>
           </div>
           <div>
             <div className="font-mono-tech text-[10px] uppercase opacity-60">Tags</div>
             <div className="flex flex-wrap gap-1 mt-1">
               {["Linen", "Dubai", "M"].map((t) => (
-                <span key={t} className="font-mono-tech text-[10px] uppercase px-2 py-0.5 border border-black">{t}</span>
+                <span key={t} className="font-mono-tech text-[10px] uppercase px-2 py-0.5 border border-[#2A323A]">{t}</span>
               ))}
             </div>
           </div>
         </div>
-        <div className="mt-auto p-5 border-t-2 border-black">
-          <button className="w-full bg-black text-white font-mono-tech uppercase text-xs px-4 py-3 rounded-full hover:bg-[#25D366] hover:text-black border-2 border-black">
+        <div className="mt-auto p-5 border-t-2 border-[#2A323A]">
+          <button className="w-full bg-[#11161B] text-white font-mono-tech uppercase text-xs px-4 py-3 rounded-full hover:bg-[#25D366] hover:text-black border-2 border-[#2A323A] hover:border-[#25D366]">
             Mark As Won →
           </button>
         </div>
