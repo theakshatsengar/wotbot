@@ -94,7 +94,7 @@ function Dashboard() {
           <Link to="/" className="font-display text-xl md:text-2xl">WABOT/01</Link>
           <span className="font-mono-tech text-[10px] text-[#25D366] uppercase">● Live</span>
         </div>
-        <nav className="flex md:flex-col flex-row gap-2 md:gap-1 overflow-x-auto md:overflow-visible px-3 py-2 md:p-3">
+        <nav className="flex md:flex-col flex-row gap-2 md:gap-2 overflow-x-auto md:overflow-visible px-3 py-2 md:p-3">
           <SideBtn icon={BarChart3} label="Overview" active={tab === "overview"} onClick={() => setTab("overview")} />
           <SideBtn icon={Inbox} label="Chats" badge={3} active={tab === "chats"} onClick={() => setTab("chats")} />
           <SideBtn icon={Bot} label="Bot Training" active={tab === "training"} onClick={() => setTab("training")} />
@@ -102,7 +102,7 @@ function Dashboard() {
           <SideBtn icon={Users} label="Contacts" active={tab === "contacts"} onClick={() => setTab("contacts")} />
           <SideBtn icon={Settings} label="Settings" active={tab === "settings"} onClick={() => setTab("settings")} />
         </nav>
-        <div className="p-3 border-t border-[#2A323A]">
+        <div className="mt-auto p-3 border-t border-[#2A323A]">
           <div className="flex items-center gap-3 px-2 py-2">
             <div className="w-8 h-8 rounded-full bg-[#25D366] border-2 border-white flex items-center justify-center font-display text-black text-sm">A</div>
             <div className="flex-1 min-w-0">
@@ -457,8 +457,10 @@ function SideBtn({ icon: Icon, label, active, badge, onClick }: { icon: any; lab
   return (
     <button
       onClick={onClick}
-      className={`w-auto md:w-full shrink-0 flex items-center gap-3 px-3 py-2 rounded font-mono-tech uppercase text-[10px] md:text-[11px] whitespace-nowrap transition-colors ${
-        active ? "bg-[#25D366] text-black" : "text-white hover:bg-white/10"
+      className={`w-auto md:w-full shrink-0 flex items-center gap-3 px-3 py-2 font-mono-tech uppercase text-[10px] md:text-[11px] whitespace-nowrap border-2 transition-colors ${
+        active
+          ? "bg-[#25D366] text-black border-[#25D366]"
+          : "bg-[#0F1317] text-white border-[#2A323A] hover:border-[#25D366]"
       }`}
     >
       <Icon size={14} />
