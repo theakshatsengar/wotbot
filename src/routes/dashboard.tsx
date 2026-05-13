@@ -104,24 +104,24 @@ function Dashboard() {
             </button>
           </div>
         </div>
-        <nav
-          className={`${mobileNavOpen ? "flex" : "hidden"} md:flex flex-col gap-2 px-3 py-3 md:p-3`}
-        >
-          <SideBtn icon={BarChart3} label="Overview" active={tab === "overview"} onClick={() => { setTab("overview"); setMobileNavOpen(false); }} />
-          <SideBtn icon={Inbox} label="Chats" badge={3} active={tab === "chats"} onClick={() => { setTab("chats"); setMobileNavOpen(false); }} />
-          <SideBtn icon={Bot} label="Bot Training" active={tab === "training"} onClick={() => { setTab("training"); setMobileNavOpen(false); }} />
-          <SideBtn icon={Zap} label="Automations" active={tab === "automations"} onClick={() => { setTab("automations"); setMobileNavOpen(false); }} />
-          <SideBtn icon={Users} label="Contacts" active={tab === "contacts"} onClick={() => { setTab("contacts"); setMobileNavOpen(false); }} />
-          <SideBtn icon={Settings} label="Settings" active={tab === "settings"} onClick={() => { setTab("settings"); setMobileNavOpen(false); }} />
-        </nav>
-        <div className="mt-auto p-3 border-t border-[#2A323A]">
-          <div className="flex items-center gap-3 px-2 py-2">
-            <div className="w-8 h-8 rounded-full bg-[#25D366] border-2 border-white flex items-center justify-center font-display text-black text-sm">A</div>
-            <div className="flex-1 min-w-0">
-              <div className="text-xs font-bold truncate">Acme Studio</div>
-              <div className="font-mono-tech text-[10px] uppercase opacity-60">Operator Plan</div>
+        <div className={`${mobileNavOpen ? "flex" : "hidden"} md:flex flex-1 flex-col gap-3 px-3 py-3 md:p-3`}>
+          <nav className="flex flex-col gap-2">
+            <SideBtn icon={BarChart3} label="Overview" active={tab === "overview"} onClick={() => { setTab("overview"); setMobileNavOpen(false); }} />
+            <SideBtn icon={Inbox} label="Chats" badge={3} active={tab === "chats"} onClick={() => { setTab("chats"); setMobileNavOpen(false); }} />
+            <SideBtn icon={Bot} label="Bot Training" active={tab === "training"} onClick={() => { setTab("training"); setMobileNavOpen(false); }} />
+            <SideBtn icon={Zap} label="Automations" active={tab === "automations"} onClick={() => { setTab("automations"); setMobileNavOpen(false); }} />
+            <SideBtn icon={Users} label="Contacts" active={tab === "contacts"} onClick={() => { setTab("contacts"); setMobileNavOpen(false); }} />
+            <SideBtn icon={Settings} label="Settings" active={tab === "settings"} onClick={() => { setTab("settings"); setMobileNavOpen(false); }} />
+          </nav>
+          <div className="mt-auto pt-3 border-t border-[#2A323A]">
+            <div className="flex items-center gap-3 px-2 py-2">
+              <div className="w-8 h-8 rounded-full bg-[#25D366] border-2 border-white flex items-center justify-center font-display text-black text-sm">A</div>
+              <div className="flex-1 min-w-0">
+                <div className="text-xs font-bold truncate">Acme Studio</div>
+                <div className="font-mono-tech text-[10px] uppercase opacity-60">Operator Plan</div>
+              </div>
+              <Link to="/" className="opacity-60 hover:opacity-100"><LogOut size={14} /></Link>
             </div>
-            <Link to="/" className="opacity-60 hover:opacity-100"><LogOut size={14} /></Link>
           </div>
         </div>
       </aside>
